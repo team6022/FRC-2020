@@ -30,6 +30,7 @@ public class OI {
   public OI() {
     XboxA.whileHeld(new Shoot(.5));
     XboxA.whenReleased(new Shoot(0.0));
+    XboxB.whileHeld(new Wheel());
   }
 
   // There are a few additional built in buttons you can use. Additionally,
