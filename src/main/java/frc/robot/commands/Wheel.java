@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 /**
@@ -16,11 +17,14 @@ import frc.robot.Robot;
 public class Wheel extends Command {
 
   Double _Speed = 0.0;
+  String _ColorStop = "Unknown";
   
-  public Wheel(Double speed) {
+  public Wheel(Double speed, String colorStop) {
     // Use requires() here to declare subsystem dependencies
-    // requires(Robot.m_subsystem);
+
     _Speed = speed;
+    _ColorStop = colorStop;
+
     requires(Robot.Wheel);
     
   }
@@ -33,6 +37,12 @@ public class Wheel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (SmartDashboard.getString("Detected Color", "Unknown") == _ColorStop) {
+      Robot.Wheel.SetSpeed(0.0);
+    } else {
+      Robot.Wheel.SetSpeed(_Speed);
+    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

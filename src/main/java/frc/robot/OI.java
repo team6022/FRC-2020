@@ -28,10 +28,16 @@ public class OI {
   }
 
   public OI() {
+
+    // shoot
     XboxA.whileHeld(new Shoot(0.5));
     XboxA.whenReleased(new Shoot(0.0));
-    XboxB.whileHeld(new Wheel(0.5));
-    XboxB.whenReleased(new Wheel(0.0));
+
+    // wheel
+    String colorStop = "Yellow";
+    XboxB.whileHeld(new Wheel(0.5, colorStop));
+    XboxB.whenReleased(new Wheel(0.0, colorStop));
+  
   }
 
   // There are a few additional built in buttons you can use. Additionally,
