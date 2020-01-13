@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
 
   public static OI OI;
   public static Shoot Shoot;
+  public static ColorWheel Wheel;
 
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
 

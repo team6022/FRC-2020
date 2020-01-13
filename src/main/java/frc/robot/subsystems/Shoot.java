@@ -18,6 +18,7 @@ public class Shoot extends Subsystem {
 
 static VictorSP Shoot = new VictorSP(RobotMap.Shoot);
 
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

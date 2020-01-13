@@ -14,10 +14,15 @@ import frc.robot.Robot;
  * An example command.  You can replace me with your own command.
  */
 public class Wheel extends Command {
-  public Wheel() {
+
+  Double _Speed = 0.0;
+  
+  public Wheel(Double speed) {
     // Use requires() here to declare subsystem dependencies
     // requires(Robot.m_subsystem);
-    requires(Robot.ColorWheel);
+    _Speed = speed;
+    requires(Robot.Wheel);
+    
   }
 
   // Called just before this Command runs the first time
