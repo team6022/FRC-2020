@@ -37,7 +37,7 @@ public class Wheel extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (SmartDashboard.getString("Detected Color", "Unknown") == _ColorStop) {
+    if (SmartDashboard.getString("Detected Color", "Unknown").equals(_ColorStop)) {
       Robot.Wheel.SetSpeed(0.0);
     } else {
       Robot.Wheel.SetSpeed(_Speed);
