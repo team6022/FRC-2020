@@ -16,9 +16,16 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.ColorWheel;
 
+// color sensor
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
+
+// range
+import com.revrobotics.*;
+import com.revrobotics.Rev2mDistanceSensor.Port;
+import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,6 +50,10 @@ public class Robot extends TimedRobot {
 
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
+  
+  private Rev2mDistanceSensor distSens;
+
+
 
  
   Command autonomousCommand;
@@ -57,6 +68,9 @@ public class Robot extends TimedRobot {
     m_colorMatcher.addColorMatch(kGreenTarget);
     m_colorMatcher.addColorMatch(kRedTarget);
     m_colorMatcher.addColorMatch(kYellowTarget);  
+
+    distSens = new Rev2mDistanceSensor(Port.kOnboard);
+
 
     Wheel = new ColorWheel();
     Shoot = new Shoot();
@@ -114,6 +128,16 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
+
+    distSens.setRangeProfile(RangeProfile.kDefault);
+
+
+    boolean isValid = distSens.isRangeValid();
+    SmartDashboard.putBoolean("Valid", isValid);
+    if(isValid) {
+      SmartDashboard.putNumber("Range", distSens.getRange());
+      SmartDashboard.putNumber("Timestamp", distSens.getTimestamp());
+    }
     
   }
 
@@ -124,6 +148,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    distSens.setEnabled(false);
   }
 
   @Override
@@ -176,6 +201,9 @@ public class Robot extends TimedRobot {
     if (autonomousCommand != null) {
       autonomousCommand.cancel();
     }
+
+    distSens.setAutomaticMode(true);
+    distSens.setEnabled(true);
   }
 
   /**

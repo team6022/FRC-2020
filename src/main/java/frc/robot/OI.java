@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.commands.*;
 
 /**
@@ -20,8 +21,20 @@ public class OI {
 
   final Joystick Sarjoy = new Joystick(0);
 
-  Button XboxA = new JoystickButton(Sarjoy, 1);
-  Button XboxB = new JoystickButton(Sarjoy, 2);
+	Button XBoxA = new JoystickButton(Sarjoy, 1);
+	Button XBoxB = new JoystickButton(Sarjoy, 2);
+	Button XBoxX = new JoystickButton(Sarjoy, 3);
+	Button XBoxY = new JoystickButton(Sarjoy, 4);
+	Button XBoxLB = new JoystickButton(Sarjoy, 5);
+	Button XBoxRB = new JoystickButton(Sarjoy, 6);
+	Button XBoxBack = new JoystickButton(Sarjoy, 7);
+	Button XBoxStart = new JoystickButton(Sarjoy, 8);
+	Button XBoxL3 = new JoystickButton(Sarjoy, 9);
+	Button XBoxR3 = new JoystickButton(Sarjoy, 10);
+	POVButton XBoxDPadUp = new POVButton(Sarjoy, 0);
+	POVButton XBoxDPadRight = new POVButton(Sarjoy, 90);
+	POVButton XBoxDPadDown = new POVButton(Sarjoy, 180);
+	POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
 
   public Joystick getJoystickSar() {
     return Sarjoy;
@@ -30,13 +43,13 @@ public class OI {
   public OI() {
 
     // shoot
-    XboxA.whileHeld(new Shoot(0.5));
-    XboxA.whenReleased(new Shoot(0.0));
+    XBoxA.whileHeld(new Shoot(0.5));
+    XBoxA.whenReleased(new Shoot(0.0));
 
     // wheel
     String colorStop = "Yellow";
-    XboxB.whileHeld(new Wheel(0.5, colorStop));
-    XboxB.whenReleased(new Wheel(0.0, colorStop));
+    XBoxB.whileHeld(new Wheel(0.5, colorStop));
+    XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
   
   }
 
