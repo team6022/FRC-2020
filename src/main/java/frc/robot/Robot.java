@@ -8,11 +8,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
+
+// commands
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+
+// subsystems
 import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.ColorWheel;
 
@@ -22,7 +27,7 @@ import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 
 // range
-import com.revrobotics.*;
+import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
 
@@ -51,11 +56,12 @@ public class Robot extends TimedRobot {
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
   
-  private Rev2mDistanceSensor distSens;
+  private Rev2mDistanceSensor distSens = new Rev2mDistanceSensor(Port.kOnboard);
 
 
+	public String gameData;
 
- 
+  
   Command autonomousCommand;
   /**
    * This function is run when the robot is first started up and should be
@@ -69,13 +75,15 @@ public class Robot extends TimedRobot {
     m_colorMatcher.addColorMatch(kRedTarget);
     m_colorMatcher.addColorMatch(kYellowTarget);  
 
-    distSens = new Rev2mDistanceSensor(Port.kOnboard);
 
+    // this will return a string from the "Game Data" field in the Driver Station
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+    
 
+		// loads robots controls
     Wheel = new ColorWheel();
     Shoot = new Shoot();
-    // Keep OI at the bottom
-    OI = new OI();
+    OI = new OI(); // Keep OI at the bottom
   }
 
   /**
