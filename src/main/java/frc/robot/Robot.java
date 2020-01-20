@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
   
-  private Rev2mDistanceSensor distSens = new Rev2mDistanceSensor(Port.kOnboard);
+  // private Rev2mDistanceSensor distSens = new Rev2mDistanceSensor(Port.kOnboard);
 
 
 	public String gameData;
@@ -137,15 +137,15 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
 
-    distSens.setRangeProfile(RangeProfile.kDefault);
+    // distSens.setRangeProfile(RangeProfile.kDefault);
 
 
-    boolean isValid = distSens.isRangeValid();
-    SmartDashboard.putBoolean("Valid", isValid);
-    if(isValid) {
-      SmartDashboard.putNumber("Range", distSens.getRange());
-      SmartDashboard.putNumber("Timestamp", distSens.getTimestamp());
-    }
+    // boolean isValid = distSens.isRangeValid();
+    // SmartDashboard.putBoolean("Valid", isValid);
+    // if(isValid) {
+    //   SmartDashboard.putNumber("Range", distSens.getRange());
+    //   SmartDashboard.putNumber("Timestamp", distSens.getTimestamp());
+    // }
     
   }
 
@@ -156,7 +156,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-    distSens.setEnabled(false);
+    // distSens.setEnableddistSens.setEnabled(false);
   }
 
   @Override
@@ -210,8 +210,8 @@ public class Robot extends TimedRobot {
       autonomousCommand.cancel();
     }
 
-    distSens.setAutomaticMode(true);
-    distSens.setEnabled(true);
+    // distSens.setAutomaticMode(true);
+    // distSens.setEnabled(true);
   }
 
   /**
