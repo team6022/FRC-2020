@@ -7,31 +7,27 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.*;
-import com.ctre.phoenix.sensors.*;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import frc.robot.RobotMap;
+
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class Shoot extends Subsystem {
 
-static VictorSP Shoot2 = new VictorSP(RobotMap.Shoot);
-static TalonSRX Shoot = new TalonSRX(0);
-
+static TalonSRX Shoot = new TalonSRX(RobotMap.ShootMotor);
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
   public void SetSpeed(Double speed) {
-      //Shoot.set(speed);
-      Shoot.set(ControlMode.PercentOutput, 0.5);
-      }
+    Shoot.set(ControlMode.PercentOutput, speed);
+  }
+
 }

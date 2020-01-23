@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.util.Color;
 // commands
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
+import  edu.wpi.first.networktables.NetworkTable;
 // subsystems
 import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.ColorWheel;
@@ -30,6 +30,7 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
+
 
 
 /**
@@ -59,7 +60,15 @@ public class Robot extends TimedRobot {
   // private Rev2mDistanceSensor distSens = new Rev2mDistanceSensor(Port.kOnboard);
 
 
-	public String gameData;
+  public String gameData;
+  
+
+  // camera
+  // NetworkTable table = NetworkTable.getTable("limelight");
+  // double targetOffsetAngle_Horizontal = table.getNumber("tx", 0);
+  // double targetOffsetAngle_Vertical = table.getNumber("ty", 0);
+  // double targetArea = table.getNumber("ta", 0);
+  // double targetSkew = table.getNumber("ts", 0);
 
   
   Command autonomousCommand;
