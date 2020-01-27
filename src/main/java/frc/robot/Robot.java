@@ -151,6 +151,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
 
+    // SmartDashboard inputs for driving, shooting, and ColorWheel motors
     SmartDashboard.setDefaultNumber("TalonFX/leftMaster", 0);
     SmartDashboard.setDefaultNumber("TalonFX/leftSlave", 0);
     SmartDashboard.setDefaultNumber("TalonFX/rightMaster", 0);
