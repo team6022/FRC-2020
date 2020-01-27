@@ -16,10 +16,12 @@ import edu.wpi.first.wpilibj.util.Color;
 // commands
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import  edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTable;
+import frc.robot.commands.DriveManual;
 // subsystems
 import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.Drive;
 
 // color sensor
 import com.revrobotics.ColorSensorV3;
@@ -46,6 +48,8 @@ public class Robot extends TimedRobot {
   public static Shoot Shoot;
   public static ColorWheel Wheel;
 
+  public static Drive driveSubsystem;
+ 
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
 
   private final ColorMatch m_colorMatcher = new ColorMatch();
@@ -92,6 +96,7 @@ public class Robot extends TimedRobot {
 		// loads robots controls
     Wheel = new ColorWheel();
     Shoot = new Shoot();
+    driveSubsystem = new Drive(false);
     OI = new OI(); // Keep OI at the bottom
   }
 
