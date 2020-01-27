@@ -29,9 +29,9 @@ import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 
 // range
-import com.revrobotics.Rev2mDistanceSensor;
-import com.revrobotics.Rev2mDistanceSensor.Port;
-import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
+// import com.revrobotics.Rev2mDistanceSensor;
+// import com.revrobotics.Rev2mDistanceSensor.Port;
+// import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
 
 
 
@@ -150,6 +150,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Blue", detectedColor.blue);
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
+
+    SmartDashboard.setDefaultNumber("TalonFX/leftMaster", 0);
+    SmartDashboard.setDefaultNumber("TalonFX/leftSlave", 0);
+    SmartDashboard.setDefaultNumber("TalonFX/rightMaster", 0);
+    SmartDashboard.setDefaultNumber("TalonFX/rightSlave", 0);
+
 
     // distSens.setRangeProfile(RangeProfile.kDefault);
 
