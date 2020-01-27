@@ -156,6 +156,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.setDefaultNumber("TalonFX/rightMaster", 0);
     SmartDashboard.setDefaultNumber("TalonFX/rightSlave", 0);
 
+    SmartDashboard.setDefaultNumber("Wheel", 0);
+    SmartDashboard.setDefaultNumber("Shoot", 0);
 
     // distSens.setRangeProfile(RangeProfile.kDefault);
 

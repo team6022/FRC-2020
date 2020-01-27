@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -28,6 +29,7 @@ static TalonSRX Shoot = new TalonSRX(RobotMap.ShootMotor);
 
   public void SetSpeed(Double speed) {
     Shoot.set(ControlMode.PercentOutput, speed);
+    SmartDashboard.putNumber("Shoot", speed);
   }
 
 }

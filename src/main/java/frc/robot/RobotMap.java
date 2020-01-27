@@ -28,7 +28,7 @@ public class RobotMap {
   public static int rightMasterPort = 0;
   public static int rightSlavePort = 1;
 
-  public static final int ShootMotor = 8;
+  public static final int ShootMotor = 0;
 
   // TALON Settings
   public static final int slot0 = 0;

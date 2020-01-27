@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.RobotMap;
 /**
@@ -25,6 +26,8 @@ public class ColorWheel extends Subsystem {
   
   public void SetSpeed(Double speed) {
     Wheel.set(speed);
+    SmartDashboard.putNumber("Wheel", speed);
+
   }
 
 }
