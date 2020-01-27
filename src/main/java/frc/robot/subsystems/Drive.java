@@ -21,7 +21,7 @@ import frc.robot.RobotMap;
 import frc.robot.commands.DriveManual;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * Subsystem for driving the robot
  */
 public class Drive extends Subsystem {
   // Put methods for controlling this subsystem

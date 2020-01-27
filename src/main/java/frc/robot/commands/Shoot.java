@@ -10,7 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-
+/**
+ * This command shoots the Power Cells
+ */
 
 public class Shoot extends Command {
 

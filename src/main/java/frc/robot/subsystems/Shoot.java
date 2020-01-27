@@ -16,7 +16,7 @@ import frc.robot.RobotMap;
 
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * This is the subsystem for the shoot command which will help shoot out the Power Cell
  */
 public class Shoot extends Subsystem {
 

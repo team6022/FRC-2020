@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.VictorSP;
 import frc.robot.RobotMap;
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * Subsystem for spinning the ColorWheel for a certain amount of times and for a certain color
  */
 public class ColorWheel extends Subsystem {
   // Put methods for controlling this subsystem

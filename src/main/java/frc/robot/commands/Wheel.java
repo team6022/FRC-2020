@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 /**
- * An example command.  You can replace me with your own command.
+ * this command will use a wheel to spin the ColorWheel.
  */
 public class Wheel extends Command {
 
