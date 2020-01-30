@@ -28,6 +28,12 @@ import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 
+// limelight camera to SmartDashboard
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
+
 // range
 // import com.revrobotics.Rev2mDistanceSensor;
 // import com.revrobotics.Rev2mDistanceSensor.Port;
@@ -111,6 +117,32 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
+    String gameData;
+    gameData = DriverStation.getInstance().getGameSpecificMessage();
+    if(gameData.length() > 0)
+    {
+      switch (gameData.charAt(0))
+      {
+        case 'B' :
+          //Blue case code
+          break;
+        case 'G' :
+          //Green case code
+          break;
+        case 'R' :
+          //Red case code
+          break;
+        case 'Y' :
+          //Yellow case code
+          break;
+        default :
+          //This is corrupt data
+          break;
+      }
+    } else {
+      //Code for no data received yet
+    }
+
  /**
      * The method GetColor() returns a normalized color value from the sensor and can be
      * useful if outputting the color to an RGB LED or similar. To
@@ -141,6 +173,16 @@ public class Robot extends TimedRobot {
       colorString = "Unknown";
     }
 
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableEntry tx = table.getEntry("tx");
+    NetworkTableEntry ty = table.getEntry("ty");
+    NetworkTableEntry ta = table.getEntry("ta");
+
+    //read values periodically
+    double x = tx.getDouble(0.0);
+    double y = ty.getDouble(0.0);
+    double area = ta.getDouble(0.0);
+
     /**
      * Open Smart Dashboard or Shuffleboard to see the color detected by the 
      * sensor.
@@ -159,6 +201,10 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.setDefaultNumber("Wheel", 0);
     SmartDashboard.setDefaultNumber("Shoot", 0);
+
+    SmartDashboard.putNumber("LimelightX", x);
+    SmartDashboard.putNumber("LimelightY", y);
+    SmartDashboard.putNumber("LimelightArea", area);
 
     // distSens.setRangeProfile(RangeProfile.kDefault);
 
