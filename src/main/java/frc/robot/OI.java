@@ -40,6 +40,8 @@ public class OI {
     return Sarjoy;
   }
 
+
+  public String gameData;
   public OI() {
 
     // shoot
@@ -47,7 +49,7 @@ public class OI {
     XBoxA.whenReleased(new Shoot(0.0));
 
     // wheel
-    String colorStop = "Yellow";
+    String colorStop = gameData;
     XBoxB.whileHeld(new Wheel(0.5, colorStop));
     XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
   

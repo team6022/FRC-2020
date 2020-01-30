@@ -70,7 +70,7 @@ public class Robot extends TimedRobot {
   // private Rev2mDistanceSensor distSens = new Rev2mDistanceSensor(Port.kOnboard);
 
 
-  public String gameData;
+
   
 
   // camera
@@ -96,7 +96,32 @@ public class Robot extends TimedRobot {
 
 
     // this will return a string from the "Game Data" field in the Driver Station
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
+    String gameData;
+    gameData = DriverStation.getInstance().getGameSpecificMessage();
+    
+    if(gameData.length() > 0)
+    {
+      switch (gameData.charAt(0))
+      {
+        case 'B' :
+          
+          break;
+        case 'G' :
+          //Green case code
+          break;
+        case 'R' :
+          //Red case code
+          break;
+        case 'Y' :
+          //Yellow case code
+          break;
+        default :
+          //This is corrupt data
+          break;
+      }
+    } else {
+      //Code for no data received yet
+    }
     
 
 		// loads robots controls
@@ -117,31 +142,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
-    String gameData;
-    gameData = DriverStation.getInstance().getGameSpecificMessage();
-    if(gameData.length() > 0)
-    {
-      switch (gameData.charAt(0))
-      {
-        case 'B' :
-          //Blue case code
-          break;
-        case 'G' :
-          //Green case code
-          break;
-        case 'R' :
-          //Red case code
-          break;
-        case 'Y' :
-          //Yellow case code
-          break;
-        default :
-          //This is corrupt data
-          break;
-      }
-    } else {
-      //Code for no data received yet
-    }
+
 
  /**
      * The method GetColor() returns a normalized color value from the sensor and can be
