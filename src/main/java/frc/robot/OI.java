@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -18,6 +19,9 @@ public class OI {
   // number it is.
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
+
+
+ 
 
   final Joystick Sarjoy = new Joystick(0);
 
@@ -41,15 +45,37 @@ public class OI {
   }
 
 
-  public String gameData;
-  public OI() {
 
+  public OI() {
+    String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    String colorStop = "Unknown";
+    if(gameData.length() > 0) {
+        switch (gameData.charAt(0)) {
+          case 'B' :
+            colorStop = "Blue";
+            break;
+          case 'G' :
+            colorStop = "Green";
+            break;
+          case 'R' :
+            colorStop = "Red";
+            break;
+          case 'Y' :
+            colorStop = "Yellow";
+            break;
+          default :
+            colorStop = "Unknown";
+            break;
+        }
+      } else {
+        colorStop = "Unknown";
+      }
     // shoot
     XBoxA.whileHeld(new Shoot(0.5));
     XBoxA.whenReleased(new Shoot(0.0));
 
     // wheel
-    String colorStop = gameData;
+
     XBoxB.whileHeld(new Wheel(0.5, colorStop));
     XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
   

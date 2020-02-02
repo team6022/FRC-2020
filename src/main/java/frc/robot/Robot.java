@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.networktables.NetworkTable;
-import frc.robot.commands.DriveManual;
+import frc.robot.commands.*;
 // subsystems
 import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.ColorWheel;
@@ -93,35 +93,7 @@ public class Robot extends TimedRobot {
     m_colorMatcher.addColorMatch(kGreenTarget);
     m_colorMatcher.addColorMatch(kRedTarget);
     m_colorMatcher.addColorMatch(kYellowTarget);  
-
-
-    // this will return a string from the "Game Data" field in the Driver Station
-    String gameData;
-    gameData = DriverStation.getInstance().getGameSpecificMessage();
     
-    if(gameData.length() > 0)
-    {
-      switch (gameData.charAt(0))
-      {
-        case 'B' :
-          
-          break;
-        case 'G' :
-          //Green case code
-          break;
-        case 'R' :
-          //Red case code
-          break;
-        case 'Y' :
-          //Yellow case code
-          break;
-        default :
-          //This is corrupt data
-          break;
-      }
-    } else {
-      //Code for no data received yet
-    }
     
 
 		// loads robots controls
