@@ -76,7 +76,7 @@ public class OI {
 
     // wheel
 
-    XBoxB.whenPressed(new Wheel(0.15, colorStop));
+    XBoxB.whileHeld(new Wheel(0.15, colorStop));
     XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
   
   }

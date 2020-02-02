@@ -19,7 +19,7 @@ public class Wheel extends Command {
   Double _Speed = 0.0;
   String _ColorStop = "Unknown";
   int colorCounter = 0;
-  boolean okInc = true;
+  boolean okInc = false;
   String startColor = "Unknown";
 
 
@@ -39,6 +39,7 @@ public class Wheel extends Command {
 
     startColor = SmartDashboard.getString("Detected Color", "Unknown");
     okInc = true;
+    colorCounter = 0;
 
   }
 
@@ -49,14 +50,9 @@ public class Wheel extends Command {
 
     Boolean onColor = SmartDashboard.getString("Detected Color", "Unknown").equals(startColor);
 
-    if (onColor && okInc) {
-      colorCounter++;
-      okInc = false;
-    } else if(onColor && !okInc) {
-      okInc = false;
-    } else {
-      okInc = true;
-    }
+    if (onColor && okInc) colorCounter++;
+    okInc = !onColor;
+
 
     if (colorCounter >= 8) {
       Robot.Wheel.SetSpeed(0.0);
