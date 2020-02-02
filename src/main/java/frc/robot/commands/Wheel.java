@@ -18,7 +18,11 @@ public class Wheel extends Command {
 
   Double _Speed = 0.0;
   String _ColorStop = "Unknown";
-  
+  int colorCounter = 0;
+  boolean okInc = true;
+  String startColor = "Unknown";
+
+
   public Wheel(Double speed, String colorStop) {
     // Use requires() here to declare subsystem dependencies
 
@@ -26,24 +30,43 @@ public class Wheel extends Command {
     _ColorStop = colorStop;
 
     requires(Robot.Wheel);
-    
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    startColor = SmartDashboard.getString("Detected Color", "Unknown");
+    okInc = true;
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     // Will stop the wheel when desired color is detected
-    if (SmartDashboard.getString("Detected Color", "Unknown").equals(_ColorStop)) {
+
+    Boolean onColor = SmartDashboard.getString("Detected Color", "Unknown").equals(startColor);
+
+    if (onColor && okInc) {
+      colorCounter++;
+      okInc = false;
+    } else if(onColor && !okInc) {
+      okInc = false;
+    } else {
+      okInc = true;
+    }
+
+    if (colorCounter >= 8) {
       Robot.Wheel.SetSpeed(0.0);
     } else {
       Robot.Wheel.SetSpeed(_Speed);
     }
-    
+
+    System.out.println(colorCounter);
+
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
