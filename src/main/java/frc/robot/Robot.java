@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
@@ -22,6 +21,7 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Belt;
 
 // color sensor
 import com.revrobotics.ColorSensorV3;
@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
   public static OI OI;
   public static Shoot Shoot;
   public static ColorWheel Wheel;
+  public static Belt Belt;
 
   public static Drive driveSubsystem;
  
@@ -100,6 +101,7 @@ public class Robot extends TimedRobot {
     Wheel = new ColorWheel();
     Shoot = new Shoot();
     driveSubsystem = new Drive(false);
+    Belt = new Belt();
     OI = new OI(); // Keep OI at the bottom
   }
 

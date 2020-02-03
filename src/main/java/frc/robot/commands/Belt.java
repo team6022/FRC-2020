@@ -11,30 +11,27 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * This command will be used to drive the robot via joystick
+ * An example command.  You can replace me with your own command.
  */
-public class DriveManual extends Command {
-  public DriveManual() {
-    // Use requires() here to declare subsystem dependencies
-    // requires(Robot.m_subsystem);
+public class Belt extends Command {
 
-    requires(Robot.driveSubsystem);
+    Double _Speed = 0.0;
+
+  public Belt(double Speed) {
+    _Speed = Speed;
+
+    requires(Robot.Belt);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    // Robot.driveSubsystem.leftMaster.setNeutralMode(NeutralMode.Brake);
-    // Robot.driveSubsystem.rightMaster.setNeutralMode(NeutralMode.Brake);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = -Robot.OI.getJoystickSar().getY();
-    double turn = Robot.OI.getJoystickSar().getX();
-
-    Robot.driveSubsystem.manualDrive(move, turn);
+    Robot.Belt.SetSpeed(_Speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -53,4 +50,7 @@ public class DriveManual extends Command {
   @Override
   protected void interrupted() {
   }
+
+ 
+
 }

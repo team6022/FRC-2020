@@ -21,7 +21,9 @@ public class Wheel extends Command {
   int colorCounter = 0;
   boolean okInc = false;
   String startColor = "Unknown";
-
+ 
+  int colorCheck = 0; // we will need to check the color a couple times to make sure it is correct
+  String currentColor = "Unknown";
 
   public Wheel(Double speed, String colorStop) {
     // Use requires() here to declare subsystem dependencies
@@ -38,6 +40,7 @@ public class Wheel extends Command {
   protected void initialize() {
 
     startColor = SmartDashboard.getString("Detected Color", "Unknown");
+    currentColor = startColor;
     okInc = true;
     colorCounter = 0;
 
@@ -48,9 +51,24 @@ public class Wheel extends Command {
   protected void execute() {
     // Will stop the wheel when desired color is detected
 
+    // are we on our start color
     Boolean onColor = SmartDashboard.getString("Detected Color", "Unknown").equals(startColor);
 
-    if (onColor && okInc) colorCounter++;
+    // the color that is currently getting detected
+    String sensedColor = SmartDashboard.getString("Detected Color", "Unknown");
+
+    // we will check the color a couple times to make sure it is getting the correct color
+    if (currentColor.equals(sensedColor)) {
+      colorCheck++;
+      System.out.println("color");
+
+    }
+
+    if (onColor && okInc && colorCheck >= 3) {
+      colorCounter++;
+      colorCheck = 0;
+    }
+
     okInc = !onColor;
 
 

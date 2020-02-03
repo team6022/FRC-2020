@@ -24,9 +24,17 @@ public class RobotMap {
 
   // CAN Devices
   public static int leftMasterPort = 3;
-  public static int leftSlavePort = 2;
+  public static int leftSlavePort = 6;
   public static int rightMasterPort = 0;
   public static int rightSlavePort = 1;
+
+
+  public static int shootMaster = 2;
+  public static int shootSlave = 4;
+
+  public static int belt = 5;
+
+
 
   public static final int ShootMotor = 0;
 

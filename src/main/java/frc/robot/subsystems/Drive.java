@@ -10,12 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.VictorSP;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveManual;
@@ -24,16 +20,14 @@ import frc.robot.commands.DriveManual;
  * Subsystem for driving the robot
  */
 public class Drive extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
-  public boolean tunable = false;
+	public boolean tunable = false;
 
-	public WPI_TalonSRX leftMaster, leftSlave, 
-	rightMaster, rightSlave;
+	public WPI_TalonSRX leftMaster, leftSlave, rightMaster, rightSlave;
 
-    public DifferentialDrive drive;
-
+	public DifferentialDrive drive;
 
 	public static double turnMultiplier;
 
@@ -43,11 +37,9 @@ public class Drive extends Subsystem {
 		leftMaster = new WPI_TalonSRX(RobotMap.leftMasterPort);
 		leftSlave = new WPI_TalonSRX(RobotMap.leftSlavePort);
 		rightMaster = new WPI_TalonSRX(RobotMap.rightMasterPort);
-        rightSlave = new WPI_TalonSRX(RobotMap.rightSlavePort);
-        
-    
+		rightSlave = new WPI_TalonSRX(RobotMap.rightSlavePort);
 
-        drive = new DifferentialDrive(leftMaster, rightSlave);
+		drive = new DifferentialDrive(leftMaster, rightMaster);
 
 		// RESET TALONS
 		leftMaster.configFactoryDefault();
@@ -61,15 +53,15 @@ public class Drive extends Subsystem {
 		leftSlave.setInverted(false);
 		leftMaster.setSensorPhase(false);
 		leftMaster.setNeutralMode(NeutralMode.Brake);
-		
+
 		// FOLLOW
 		leftSlave.follow(leftMaster);
-		
+
 		// RIGHT MASTER
 		rightMaster.configNeutralDeadband(RobotMap.driveNeutralDeadband, RobotMap.timeoutMs);
 		rightMaster.setInverted(false);
 		rightSlave.setInverted(false);
-		rightMaster.setSensorPhase(false);	
+		rightMaster.setSensorPhase(false);
 		rightMaster.setNeutralMode(NeutralMode.Brake);
 
 		// FOLLOW
@@ -79,31 +71,31 @@ public class Drive extends Subsystem {
 		leftMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
 		leftMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
 		leftMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
-		leftMaster.enableCurrentLimit(true); 
-		
+		leftMaster.enableCurrentLimit(true);
+
 		rightMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
 		rightMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
 		rightMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
-		rightMaster.enableCurrentLimit(true); 		
-	
+		rightMaster.enableCurrentLimit(true);
+
 		turnMultiplier = .4;
 	}
 
-// DRIVE THE MOTORS
-public void manualDrive(double move, double turn) {
-    turn = turn * turnMultiplier;
-    drive.arcadeDrive(move, turn, false);
-}
+	// DRIVE THE MOTORS
+	public void manualDrive(double move, double turn) {
+		turn = turn * turnMultiplier;
+		drive.arcadeDrive(move, turn, false);
+	}
 
-public void stop() {
-    drive.tankDrive(0, 0);	
-}
+	public void stop() {
+		drive.tankDrive(0, 0);
+	}
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+	@Override
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
 
-    setDefaultCommand(new DriveManual());
-  }
+		setDefaultCommand(new DriveManual());
+	}
 }

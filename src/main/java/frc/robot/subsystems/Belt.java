@@ -7,41 +7,29 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * This is the subsystem for the shoot command which will help shoot out the
- * Power Cell
+ * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Shoot extends Subsystem {
-
-  static WPI_TalonSRX shootMaster = new WPI_TalonSRX(RobotMap.shootMaster);
-  static WPI_TalonSRX shootSlave = new WPI_TalonSRX(RobotMap.shootSlave);
-
+public class Belt extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  static WPI_TalonSRX belt = new WPI_TalonSRX(RobotMap.belt);
 
   @Override
   public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
   public void SetSpeed(Double speed) {
 
-    shootMaster.configFactoryDefault();
-    shootSlave.configFactoryDefault();
-
-
-    shootMaster.setInverted(true);
-    shootSlave.follow(shootMaster);
-
-    shootMaster.set(ControlMode.PercentOutput, speed);
-
-    SmartDashboard.putNumber("Shoot", speed);
+    belt.configFactoryDefault();
+    belt.set(ControlMode.PercentOutput, speed);
   }
-
 }
