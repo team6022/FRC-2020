@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
   public static Shoot Shoot;
   public static ColorWheel Wheel;
   public static Belt Belt;
-  public static Piston LiftArm;
+  public static Piston Piston;
 
   public static Drive driveSubsystem;
  
@@ -104,7 +104,7 @@ public class Robot extends TimedRobot {
     Shoot = new Shoot();
     driveSubsystem = new Drive(false);
     Belt = new Belt();
-    LiftArm = new Piston();
+    Piston = new Piston();
     OI = new OI(); // Keep OI at the bottom
   }
 

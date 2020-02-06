@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -17,7 +16,7 @@ public class LiftArm extends Command {
   public LiftArm() {
     // Use requires() here to declare subsystem dependencies
     // requires(Robot.m_subsystem);
-    requires(Robot.LiftArm);
+    requires(Robot.Piston);
 
   }
 
@@ -29,6 +28,8 @@ public class LiftArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+        Robot.Piston.Active(Robot.OI.getJoystickSar());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,6 +41,7 @@ public class LiftArm extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+        
   }
 
   // Called when another command which requires one or more of the same

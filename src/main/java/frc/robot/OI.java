@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
@@ -23,7 +24,7 @@ public class OI {
 
  
 
-  final Joystick Sarjoy = new Joystick(0);
+  final XboxController Sarjoy = new XboxController(0);
 
 	Button XBoxA = new JoystickButton(Sarjoy, 1);
 	Button XBoxB = new JoystickButton(Sarjoy, 2);
@@ -43,7 +44,7 @@ public class OI {
   POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
   
 
-  public Joystick getJoystickSar() {
+  public XboxController getJoystickSar() {
     return Sarjoy;
   }
 
@@ -86,6 +87,10 @@ public class OI {
     // wheel
     XBoxB.whileHeld(new Wheel(0.15, colorStop));
     XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
+
+    // liftarm
+    XBoxRT.whileHeld(new LiftArm());
+
   
   }
 
