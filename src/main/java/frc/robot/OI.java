@@ -34,11 +34,14 @@ public class OI {
 	Button XBoxBack = new JoystickButton(Sarjoy, 7);
 	Button XBoxStart = new JoystickButton(Sarjoy, 8);
 	Button XBoxL3 = new JoystickButton(Sarjoy, 9);
-	Button XBoxR3 = new JoystickButton(Sarjoy, 10);
+  Button XBoxR3 = new JoystickButton(Sarjoy, 10);
+  Button XBoxLT = new JoystickButton(Sarjoy, 11);
+  Button XBoxRT = new JoystickButton(Sarjoy,12);
 	POVButton XBoxDPadUp = new POVButton(Sarjoy, 0);
 	POVButton XBoxDPadRight = new POVButton(Sarjoy, 90);
 	POVButton XBoxDPadDown = new POVButton(Sarjoy, 180);
-	POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
+  POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
+  
 
   public Joystick getJoystickSar() {
     return Sarjoy;
@@ -76,7 +79,7 @@ public class OI {
 
 
     // belt
-    XBoxX.whileHeld(new Belt(0.5));
+    XBoxX.whileHeld(new Belt(0.8));
     XBoxX.whenReleased(new Belt(0.0));
 
 

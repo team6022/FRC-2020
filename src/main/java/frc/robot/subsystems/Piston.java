@@ -7,34 +7,26 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Belt extends Subsystem {
+public class Piston extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  static WPI_TalonSRX belt = new WPI_TalonSRX(RobotMap.belt);
+  static DoubleSolenoid doubleSolinoid = new DoubleSolenoid(RobotMap.PistonsForwardChannel, RobotMap.PistonsReverseChannel);
+
+ 
+  public Piston() {
+        super();
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-  }
-
-  public void SetSpeed(Double speed) {
-
-    belt.configFactoryDefault();
-    belt.set(ControlMode.PercentOutput, speed);
-    // belt.setInverted(true);
-
-    SmartDashboard.putNumber("Belt", speed);
-
   }
 }

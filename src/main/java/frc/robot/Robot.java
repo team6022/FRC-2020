@@ -22,6 +22,7 @@ import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Belt;
+import frc.robot.subsystems.Piston;
 
 // color sensor
 import com.revrobotics.ColorSensorV3;
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
   public static Shoot Shoot;
   public static ColorWheel Wheel;
   public static Belt Belt;
+  public static Piston LiftArm;
 
   public static Drive driveSubsystem;
  
@@ -102,6 +104,7 @@ public class Robot extends TimedRobot {
     Shoot = new Shoot();
     driveSubsystem = new Drive(false);
     Belt = new Belt();
+    LiftArm = new Piston();
     OI = new OI(); // Keep OI at the bottom
   }
 
@@ -176,6 +179,8 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.setDefaultNumber("Wheel", 0);
     SmartDashboard.setDefaultNumber("Shoot", 0);
+    SmartDashboard.setDefaultNumber("Belt", 0);
+
 
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);

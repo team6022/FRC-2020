@@ -62,6 +62,12 @@ public class RobotMap {
   public static final int current40AmpPeakCurrentDuration = 200;
   public static final int current40AmpContinuousCurrentLimit = 35;
 
+  // PISTON CHANNELS
+
+  public static final int PistonsForwardChannel = 0;
+  public static final int PistonsReverseChannel = 1;
+  
+
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
