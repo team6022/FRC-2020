@@ -66,6 +66,13 @@ public class RobotMap {
 
   public static final int PistonsForwardChannel = 0;
   public static final int PistonsReverseChannel = 1;
+
+  // INTAKE CHANNELS
+
+  public static final int IntakeChannel = 3;
+
+  // LIFTARM CHANNELS
+  public static final int IntakeArmChannel = 4;
   
 
   // If you are using multiple modules, make sure to define both the port

@@ -91,6 +91,12 @@ public class OI {
     // liftarm
     XBoxRT.whileHeld(new LiftArm());
 
+    // intake
+    XBoxR3.whileHeld(new Intake(0.5));
+
+    // intakearm
+    XBoxDPadDown.whenPressed(new IntakeArm());
+
   
   }
 
