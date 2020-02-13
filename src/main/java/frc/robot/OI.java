@@ -128,6 +128,12 @@ public class OI {
     JoyYellow.whileHeld(new Wheel(0.15, "Y"));
     JoyYellow.whenReleased(new Wheel(0.0, "Unknown"));
 
+    // elevatearm
+    JoyDPadUp.whileHeld(new ElevateArm(0.5));
+    JoyDPadUp.whenReleased(new ElevateArm(0.0));
+    JoyDPadDown.whileHeld(new ElevateArm(-0.5));
+    JoyDPadDown.whenReleased(new ElevateArm(0.0));
+
   }
 
   // There are a few additional built in buttons you can use. Additionally,

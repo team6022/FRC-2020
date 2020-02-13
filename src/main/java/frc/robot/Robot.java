@@ -25,7 +25,7 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Belt;
 import frc.robot.subsystems.Piston;
 import frc.robot.subsystems.Intake;
-
+import frc.robot.subsystems.ElevateArm;
 
 // color sensor
 import com.revrobotics.ColorSensorV3;
@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
   public static Piston Piston;
   public static Intake Intake;
   public static IntakeArm IntakeArm;
+  public static ElevateArm ElevateArm;
 
   public static Drive driveSubsystem;
  
@@ -115,6 +116,7 @@ public class Robot extends TimedRobot {
     Piston = new Piston();
     Intake = new Intake();
     IntakeArm = new IntakeArm();
+    ElevateArm = new ElevateArm();
     OI = new OI(); // Keep OI at the bottom
   }
 
