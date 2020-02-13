@@ -25,6 +25,7 @@ public class OI {
  
 
   final XboxController Sarjoy = new XboxController(0);
+  final Joystick Branjoy = new Joystick(1);
 
 	Button XBoxA = new JoystickButton(Sarjoy, 1);
 	Button XBoxB = new JoystickButton(Sarjoy, 2);
@@ -42,10 +43,30 @@ public class OI {
 	POVButton XBoxDPadRight = new POVButton(Sarjoy, 90);
 	POVButton XBoxDPadDown = new POVButton(Sarjoy, 180);
   POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
+
+  Button JoyRed = new JoystickButton(Branjoy, 2);
+  Button JoyBlue = new JoystickButton(Branjoy, 3);
+  Button JoyYellow = new JoystickButton(Branjoy, 4);
+  Button JoyGreen = new JoystickButton(Branjoy, 1);
+  Button JoyLB = new JoystickButton(Branjoy, 5);
+  Button JoyRB = new JoystickButton(Branjoy, 6);
+  Button JoyBack = new JoystickButton(Branjoy, 7);
+  Button JoyStart = new JoystickButton(Branjoy, 8);
+  Button JoyL3 = new JoystickButton(Branjoy, 9);
+  Button JoyR3 = new JoystickButton(Branjoy, 10);
+  POVButton JoyDPadUp = new POVButton(Branjoy, 0);
+  POVButton JoyDPadRight = new POVButton(Branjoy, 90);
+  POVButton JoyDPadDown = new POVButton(Branjoy, 180);
+  POVButton JoyDPadLeft = new POVButton(Branjoy, 270);
+
   
 
   public XboxController getJoystickSar() {
     return Sarjoy;
+  }
+
+  public Joystick getJoystickBran() {
+    return Branjoy;
   }
 
 
@@ -97,7 +118,16 @@ public class OI {
     // intakearm
     XBoxDPadDown.whenPressed(new IntakeArm());
 
-  
+    // colors
+    JoyGreen.whileHeld(new Wheel(0.15, "G"));
+    JoyGreen.whenReleased(new Wheel(0.0, "Unknown"));
+    JoyRed.whileHeld(new Wheel(0.15, "R"));
+    JoyRed.whenReleased(new Wheel(0.0, "Unknown"));
+    JoyBlue.whileHeld(new Wheel(0.15, "B"));
+    JoyBlue.whenReleased(new Wheel(0.0, "Unknown"));
+    JoyYellow.whileHeld(new Wheel(0.15, "Y"));
+    JoyYellow.whenReleased(new Wheel(0.0, "Unknown"));
+
   }
 
   // There are a few additional built in buttons you can use. Additionally,

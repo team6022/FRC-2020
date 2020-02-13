@@ -28,8 +28,16 @@ public class Wheel extends Command {
   public Wheel(Double speed, String colorStop) {
     // Use requires() here to declare subsystem dependencies
 
+
+
+
+
+    String[] colorSensorReal = {"R", "Y", "B", "G" };
+    String[] colorSensorOffset = {"B", "G", "R", "Y" };
+
     _Speed = speed;
-    _ColorStop = colorStop;
+    // _ColorStop = colorStop;
+    _ColorStop = colorSensorOffset[java.util.Arrays.asList(colorSensorReal).indexOf(colorStop)];
 
     requires(Robot.Wheel);
 

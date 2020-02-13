@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.util.Color;
 
 // commands
@@ -100,6 +101,9 @@ public class Robot extends TimedRobot {
     m_colorMatcher.addColorMatch(kGreenTarget);
     m_colorMatcher.addColorMatch(kRedTarget);
     m_colorMatcher.addColorMatch(kYellowTarget);  
+
+    // loads camera
+    CameraServer.getInstance().startAutomaticCapture(0);
     
     
 
