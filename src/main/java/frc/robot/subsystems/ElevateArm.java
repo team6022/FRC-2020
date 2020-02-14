@@ -2,7 +2,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Talon;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+
 import frc.robot.RobotMap;
 
 
@@ -11,7 +15,7 @@ import frc.robot.RobotMap;
  */
 public class ElevateArm extends Subsystem {
 
-	static Talon ElevateArm = new Talon(RobotMap.ElevateArmChannel);
+	static VictorSPX ElevateArm = new VictorSPX(RobotMap.ElevateArm);
 
 	public ElevateArm()
 	{
@@ -29,7 +33,7 @@ public class ElevateArm extends Subsystem {
 	*/
 	public void LiftArm(Double speed)
 	{
-		ElevateArm.set(speed);
+		ElevateArm.set(ControlMode.PercentOutput, speed);
 		SmartDashboard.putNumber("ElevateArm", speed);
 	}
 

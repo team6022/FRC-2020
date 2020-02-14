@@ -23,17 +23,18 @@ public class RobotMap {
   public static final int Wheel = 4;
 
   // CAN Devices
-  public static int leftMasterPort = 3;
-  public static int leftSlavePort = 6;
-  public static int rightMasterPort = 0;
-  public static int rightSlavePort = 1;
+  public static int leftMasterPort = 1;
+  public static int leftSlavePort = 4;
+  public static int rightMasterPort = 6;
+  public static int rightSlavePort = 3;
 
 
   public static int shootMaster = 2;
-  public static int shootSlave = 4;
+  public static int shootSlave = 8;
 
   public static int belt = 5;
 
+  public static final int ElevateArm = 7;
 
 
   public static final int ShootMotor = 0;
@@ -74,8 +75,6 @@ public class RobotMap {
   // LIFTARM CHANNELS
   public static final int IntakeArmChannel = 4;
   
-  // ELEVATE ARM CHANNELS
-  public static final int ElevateArmChannel = 5;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

@@ -101,7 +101,7 @@ public class OI {
 
 
     // belt
-    XBoxX.whileHeld(new Belt(0.8));
+    XBoxX.whileHeld(new Belt(0.4));
     XBoxX.whenReleased(new Belt(0.0));
 
 
@@ -113,7 +113,9 @@ public class OI {
     XBoxRT.whileHeld(new LiftArm());
 
     // intake
-    XBoxR3.whileHeld(new Intake(0.5));
+    XBoxY.whileHeld(new Intake(0.5));
+    XBoxY.whenReleased(new Intake(0.0));
+
 
     // intakearm
     XBoxDPadDown.whenPressed(new IntakeArm());

@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -31,8 +32,8 @@ public class DriveManual extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double move = -Robot.OI.getJoystickSar().getY();
-    double turn = Robot.OI.getJoystickSar().getX();
+    double move = -Robot.OI.getJoystickSar().getY(Hand.kLeft);
+    double turn = Robot.OI.getJoystickSar().getX(Hand.kLeft);
 
     Robot.driveSubsystem.manualDrive(move, turn);
   }
