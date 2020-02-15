@@ -110,7 +110,7 @@ public class OI {
     XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
 
     // liftarm
-    XBoxRT.whileHeld(new LiftArm());
+    XBoxRT.whileHeld(new LiftColorArm());
 
     // intake
     XBoxY.whileHeld(new Intake(0.5));

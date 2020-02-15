@@ -7,7 +7,7 @@ import frc.robot.RobotMap;
 
 
 /**
- * Controls ball intake
+ * Starts the Power Cell intake
  */
 public class Intake extends Subsystem {
 

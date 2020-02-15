@@ -17,7 +17,7 @@ public class ElevateArm extends Command
 	Double _Speed = 0.0;
 
 	/**
-	* Intake toggles ball intake
+	* Intake toggles ball intake. Puts intake up
 	*
 	* @param speed what direction to turn - Positive speed means take ball in, negative means shoot ball out
 	*/

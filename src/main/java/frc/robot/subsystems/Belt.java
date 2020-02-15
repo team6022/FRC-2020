@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * Subsystem for the Belt command.
  */
 public class Belt extends Subsystem {
   // Put methods for controlling this subsystem

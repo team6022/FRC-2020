@@ -7,6 +7,8 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
@@ -25,8 +27,8 @@ public class DriveManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    // Robot.driveSubsystem.leftMaster.setNeutralMode(NeutralMode.Brake);
-    // Robot.driveSubsystem.rightMaster.setNeutralMode(NeutralMode.Brake);
+    Robot.driveSubsystem.leftMaster.setNeutralMode(NeutralMode.Brake);
+    Robot.driveSubsystem.rightMaster.setNeutralMode(NeutralMode.Brake);
   }
 
   // Called repeatedly when this Command is scheduled to run

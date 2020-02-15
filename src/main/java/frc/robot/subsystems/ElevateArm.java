@@ -11,7 +11,7 @@ import frc.robot.RobotMap;
 
 
 /**
- * Controls ball intake
+ * Controls ball intake going up.
  */
 public class ElevateArm extends Subsystem {
 

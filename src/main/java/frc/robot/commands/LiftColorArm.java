@@ -10,10 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 /**
- * An example command.  You can replace me with your own command.
+ * Lifts the arm for the color sensor.
  */
-public class LiftArm extends Command {
-  public LiftArm() {
+public class LiftColorArm extends Command {
+  public LiftColorArm() {
     // Use requires() here to declare subsystem dependencies
     // requires(Robot.m_subsystem);
     requires(Robot.Piston);

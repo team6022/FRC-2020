@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * Moves intake up and down
  */
 public class Piston extends Subsystem {
   // Put methods for controlling this subsystem

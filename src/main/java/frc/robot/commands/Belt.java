@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * An example command.  You can replace me with your own command.
+ * This runs the conveyor belt. Power Cells will be run up to the fly wheels.
  */
 public class Belt extends Command {
 
