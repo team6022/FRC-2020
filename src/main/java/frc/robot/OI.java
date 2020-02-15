@@ -96,13 +96,16 @@ public class OI {
         colorStop = "Unknown";
       }
     // shoot
-    XBoxA.whileHeld(new Shoot(1.0));
-    XBoxA.whenReleased(new Shoot(0.0));
+    XBoxRB.whileHeld(new Shoot(0.8));
+    XBoxRB.whenReleased(new Shoot(0.0));
 
 
     // belt
-    XBoxX.whileHeld(new Belt(0.4));
-    XBoxX.whenReleased(new Belt(0.0));
+    XBoxLB.whileHeld(new Belt(0.7));
+    XBoxLB.whenReleased(new Belt(0.0));
+
+    XBoxBack.whileHeld(new Belt(-0.4));
+    XBoxBack.whenReleased(new Belt(0.0));
 
 
     // wheel

@@ -37,9 +37,11 @@ public class Shoot extends Subsystem {
 
 
     shootMaster.setInverted(true);
-    shootSlave.follow(shootMaster);
+    // shootSlave.follow(shootMaster);
 
     shootMaster.set(ControlMode.PercentOutput, speed);
+    shootSlave.set(ControlMode.PercentOutput, speed);
+
 
     SmartDashboard.putNumber("Shoot", speed);
   }

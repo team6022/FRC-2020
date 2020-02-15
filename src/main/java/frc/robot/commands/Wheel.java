@@ -32,12 +32,12 @@ public class Wheel extends Command {
 
 
 
-    String[] colorSensorReal = {"R", "Y", "B", "G", "Unkown" };
-    String[] colorSensorOffset = {"B", "G", "R", "Y", "Unkown" };
+    String[] colorSensorReal = {"R", "Y", "B", "G", "Unknown" };
+    String[] colorSensorOffset = {"B", "G", "R", "Y", "Unknown" };
 
     _Speed = speed;
-    // _ColorStop = colorStop;
-    _ColorStop = colorSensorOffset[java.util.Arrays.asList(colorSensorReal).indexOf(colorStop)];
+    _ColorStop = colorStop;
+    // _ColorStop = colorSensorOffset[java.util.Arrays.asList(colorSensorReal).indexOf(colorStop)];
 
     requires(Robot.Wheel);
 

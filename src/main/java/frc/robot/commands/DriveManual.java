@@ -35,7 +35,7 @@ public class DriveManual extends Command {
   @Override
   protected void execute() {
     double move = -Robot.OI.getJoystickSar().getY(Hand.kLeft);
-    double turn = Robot.OI.getJoystickSar().getX(Hand.kLeft);
+    double turn = Robot.OI.getJoystickSar().getX(Hand.kRight);
 
     Robot.driveSubsystem.manualDrive(move, turn);
   }
