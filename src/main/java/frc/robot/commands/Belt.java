@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -15,7 +16,7 @@ import frc.robot.Robot;
  */
 public class Belt extends Command {
 
-    Double _Speed = 0.0;
+  Double _Speed = 0.0;
 
   public Belt(double Speed) {
     _Speed = Speed;
@@ -31,6 +32,12 @@ public class Belt extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    // check to see if trigger is held
+    if (Robot.OI.getJoystickSar().getTriggerAxis(Hand.kRight) > 0.5) {
+      _Speed = 0.7;
+    }
+
     Robot.Belt.SetSpeed(_Speed);
   }
 
@@ -50,7 +57,5 @@ public class Belt extends Command {
   @Override
   protected void interrupted() {
   }
-
- 
 
 }

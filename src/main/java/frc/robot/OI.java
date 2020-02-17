@@ -21,28 +21,26 @@ public class OI {
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
 
-
- 
   // Controllers
   final XboxController Sarjoy = new XboxController(0);
   final Joystick Branjoy = new Joystick(1);
 
   // Buttons for Sarjoy
-	Button XBoxA = new JoystickButton(Sarjoy, 1);
-	Button XBoxB = new JoystickButton(Sarjoy, 2);
-	Button XBoxX = new JoystickButton(Sarjoy, 3);
-	Button XBoxY = new JoystickButton(Sarjoy, 4);
-	Button XBoxLB = new JoystickButton(Sarjoy, 5);
-	Button XBoxRB = new JoystickButton(Sarjoy, 6);
-	Button XBoxBack = new JoystickButton(Sarjoy, 7);
-	Button XBoxStart = new JoystickButton(Sarjoy, 8);
-	Button XBoxL3 = new JoystickButton(Sarjoy, 9);
+  Button XBoxA = new JoystickButton(Sarjoy, 1);
+  Button XBoxB = new JoystickButton(Sarjoy, 2);
+  Button XBoxX = new JoystickButton(Sarjoy, 3);
+  Button XBoxY = new JoystickButton(Sarjoy, 4);
+  Button XBoxLB = new JoystickButton(Sarjoy, 5);
+  Button XBoxRB = new JoystickButton(Sarjoy, 6);
+  Button XBoxBack = new JoystickButton(Sarjoy, 7);
+  Button XBoxStart = new JoystickButton(Sarjoy, 8);
+  Button XBoxL3 = new JoystickButton(Sarjoy, 9);
   Button XBoxR3 = new JoystickButton(Sarjoy, 10);
-  Button XBoxLT = new JoystickButton(Sarjoy, 11);
-  Button XBoxRT = new JoystickButton(Sarjoy,12);
-	POVButton XBoxDPadUp = new POVButton(Sarjoy, 0);
-	POVButton XBoxDPadRight = new POVButton(Sarjoy, 90);
-	POVButton XBoxDPadDown = new POVButton(Sarjoy, 180);
+  // Button XBoxLT = new JoystickButton(Sarjoy, 11);
+  // Button XBoxRT = new JoystickButton(Sarjoy,12);
+  POVButton XBoxDPadUp = new POVButton(Sarjoy, 0);
+  POVButton XBoxDPadRight = new POVButton(Sarjoy, 90);
+  POVButton XBoxDPadDown = new POVButton(Sarjoy, 180);
   POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
 
   // Buttons for Branjoy
@@ -61,8 +59,6 @@ public class OI {
   POVButton JoyDPadDown = new POVButton(Branjoy, 180);
   POVButton JoyDPadLeft = new POVButton(Branjoy, 270);
 
-  
-
   public XboxController getJoystickSar() {
     return Sarjoy;
   }
@@ -71,59 +67,62 @@ public class OI {
     return Branjoy;
   }
 
-
-
   public OI() {
     String gameData = DriverStation.getInstance().getGameSpecificMessage();
     String colorStop = "Unknown";
-    if(gameData.length() > 0) {
-        switch (gameData.charAt(0)) {
-          case 'B' :
-            colorStop = "Blue";
-            break;
-          case 'G' :
-            colorStop = "Green";
-            break;
-          case 'R' :
-            colorStop = "Red";
-            break;
-          case 'Y' :
-            colorStop = "Yellow";
-            break;
-          default :
-            colorStop = "Unknown";
-            break;
-        }
-      } else {
+    if (gameData.length() > 0) {
+      switch (gameData.charAt(0)) {
+      case 'B':
+        colorStop = "Blue";
+        break;
+      case 'G':
+        colorStop = "Green";
+        break;
+      case 'R':
+        colorStop = "Red";
+        break;
+      case 'Y':
+        colorStop = "Yellow";
+        break;
+      default:
         colorStop = "Unknown";
+        break;
       }
-    // shoot
-    XBoxRB.whileHeld(new Shoot(0.8));
-    XBoxRB.whenReleased(new Shoot(0.0));
+    } else {
+      colorStop = "Unknown";
+    }
 
+    // Sarjoy Input ===============================================================
+
+    // shoot
+    // XBoxRT.whileHeld(new Shoot(0.8));
+    // XBoxRT.whenReleased(new Shoot(0.0));
 
     // belt
     XBoxLB.whileHeld(new Belt(0.7));
     XBoxLB.whenReleased(new Belt(0.0));
 
+    // belt back
     XBoxBack.whileHeld(new Belt(-0.4));
     XBoxBack.whenReleased(new Belt(0.0));
-
 
     // wheel
     XBoxB.whileHeld(new Wheel(0.15, colorStop));
     XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
 
     // liftarm
-    XBoxRT.whileHeld(new LiftColorArm());
+    XBoxRB.whileHeld(new LiftColorArm());
 
     // intake
-    XBoxY.whileHeld(new Intake(0.5));
-    XBoxY.whenReleased(new Intake(0.0));
-
+    JoyYellow.whileHeld(new Intake(0.5));
+    JoyYellow.whenReleased(new Intake(0.0));
 
     // intakearm
     XBoxDPadDown.whenPressed(new IntakeArm());
+
+
+    // Branjoy Input ===============================================================
+
 
     // colors
     JoyGreen.whileHeld(new Wheel(0.15, "G"));

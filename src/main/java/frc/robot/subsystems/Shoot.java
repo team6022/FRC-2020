@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.ShootTrigger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -24,24 +27,21 @@ public class Shoot extends Subsystem {
   static WPI_TalonSRX shootMaster = new WPI_TalonSRX(RobotMap.shootMaster);
   static WPI_TalonSRX shootSlave = new WPI_TalonSRX(RobotMap.shootSlave);
 
-
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ShootTrigger());
   }
 
-  public void SetSpeed(Double speed) {
+  public void SetSpeed(final Double speed) {
 
     shootMaster.configFactoryDefault();
     shootSlave.configFactoryDefault();
-
 
     shootMaster.setInverted(true);
     // shootSlave.follow(shootMaster);
 
     shootMaster.set(ControlMode.PercentOutput, speed);
     shootSlave.set(ControlMode.PercentOutput, speed);
-
 
     SmartDashboard.putNumber("Shoot", speed);
   }
