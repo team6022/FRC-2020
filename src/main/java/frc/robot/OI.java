@@ -23,10 +23,11 @@ public class OI {
 
 
  
-
+  // Controllers
   final XboxController Sarjoy = new XboxController(0);
   final Joystick Branjoy = new Joystick(1);
 
+  // Buttons for Sarjoy
 	Button XBoxA = new JoystickButton(Sarjoy, 1);
 	Button XBoxB = new JoystickButton(Sarjoy, 2);
 	Button XBoxX = new JoystickButton(Sarjoy, 3);
@@ -44,6 +45,7 @@ public class OI {
 	POVButton XBoxDPadDown = new POVButton(Sarjoy, 180);
   POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
 
+  // Buttons for Branjoy
   Button JoyRed = new JoystickButton(Branjoy, 2);
   Button JoyBlue = new JoystickButton(Branjoy, 3);
   Button JoyYellow = new JoystickButton(Branjoy, 4);
