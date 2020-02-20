@@ -11,10 +11,11 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
+
 import frc.robot.Robot;
 
 /**
- * This command will be used to drive the robot via joystick
+ * This command will be used to drive the robot via Xbox controller. Also allows differential drive.
  */
 public class DriveManual extends Command {
   public DriveManual() {

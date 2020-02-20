@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+
 import frc.robot.commands.*;
 
 /**
@@ -68,6 +69,7 @@ public class OI {
   }
 
   public OI() {
+    // Allows us to receive the randomized color for Position Control.
     String gameData = DriverStation.getInstance().getGameSpecificMessage();
     String colorStop = "Unknown";
     if (gameData.length() > 0) {

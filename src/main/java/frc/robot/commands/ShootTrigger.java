@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * This command shoots out the Power Cells
+ * This command shoots out the Power Cells at variable speeds
  */
 
 public class ShootTrigger extends Command {

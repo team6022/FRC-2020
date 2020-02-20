@@ -9,10 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.Robot;
 
 /**
- * this command will use a wheel to spin the ColorWheel.
+ * This command will use a wheel to spin the ColorWheel.
  */
 public class Wheel extends Command {
 
@@ -22,7 +23,7 @@ public class Wheel extends Command {
   boolean okInc = false;
   String startColor = "Unknown";
  
-  int colorCheck = 0; // we will need to check the color a couple times to make sure it is correct
+  int colorCheck = 0; // We will need to check the color a couple times to make sure it is correct
   String currentColor = "Unknown";
 
   public Wheel(Double speed, String colorStop) {
@@ -59,13 +60,13 @@ public class Wheel extends Command {
   protected void execute() {
     // Will stop the wheel when desired color is detected
 
-    // are we on our start color
+    // Are we on our start color?
     Boolean onColor = SmartDashboard.getString("Detected Color", "Unknown").equals(startColor);
 
-    // the color that is currently getting detected
+    // The color that is currently getting detected
     String sensedColor = SmartDashboard.getString("Detected Color", "Unknown");
 
-    // we will check the color a couple times to make sure it is getting the correct color
+    // We will check the color a couple times to make sure it is getting the correct color
     if (currentColor.equals(sensedColor)) {
       colorCheck++;
       System.out.println("color");
