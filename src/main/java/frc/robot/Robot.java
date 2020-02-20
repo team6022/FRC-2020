@@ -103,12 +103,13 @@ public class Robot extends TimedRobot {
     m_colorMatcher.addColorMatch(kRedTarget);
     m_colorMatcher.addColorMatch(kYellowTarget);  
 
-    // loads camera
+    // Loads cameras.
     CameraServer.getInstance().startAutomaticCapture(0);
+    CameraServer.getInstance().startAutomaticCapture(1);
     
     
 
-		// loads robots controls
+		// Loads robots controls.
     Wheel = new ColorWheel();
     Shoot = new Shoot();
     driveSubsystem = new Drive(false);
