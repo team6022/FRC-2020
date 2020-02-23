@@ -33,7 +33,6 @@ import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 
 // limelight camera to SmartDashboard
-import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
