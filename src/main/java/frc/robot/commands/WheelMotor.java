@@ -15,18 +15,18 @@ import frc.robot.Robot;
 /**
  * This command will use a wheel to spin the ColorWheel.
  */
-public class Wheel extends Command {
+public class WheelMotor extends Command {
 
   Double _Speed = 0.0;
   String _ColorStop = "Unknown";
   int colorCounter = 0;
-  boolean okInc = false;
+  boolean okInc = false; // it's ok to increment
   String startColor = "Unknown";
  
   int colorCheck = 0; // We will need to check the color a couple times to make sure it is correct
   String currentColor = "Unknown";
 
-  public Wheel(Double speed, String colorStop) {
+  public WheelMotor(Double speed, String colorStop) {
     // Use requires() here to declare subsystem dependencies
 
 
@@ -40,7 +40,7 @@ public class Wheel extends Command {
     _ColorStop = colorStop;
     // _ColorStop = colorSensorOffset[java.util.Arrays.asList(colorSensorReal).indexOf(colorStop)];
 
-    requires(Robot.Wheel);
+    requires(Robot.WheelMotor);
 
   }
 
@@ -73,6 +73,7 @@ public class Wheel extends Command {
 
     }
 
+    // if we get the same color 3 times in a row, we can consider it move onto the next color
     if (onColor && okInc && colorCheck >= 3) {
       colorCounter++;
       colorCheck = 0;
@@ -82,9 +83,9 @@ public class Wheel extends Command {
 
 
     if (colorCounter >= 8) {
-      Robot.Wheel.SetSpeed(0.0);
+      Robot.WheelMotor.SetSpeed(0.0);
     } else {
-      Robot.Wheel.SetSpeed(_Speed);
+      Robot.WheelMotor.SetSpeed(_Speed);
     }
 
     System.out.println(colorCounter);

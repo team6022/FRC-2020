@@ -9,25 +9,35 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 import frc.robot.RobotMap;
+
 /**
- * Subsystem for spinning the ColorWheel for a certain amount of times and for a certain color
+ * Moves intake up and down
  */
-public class ColorWheel extends Subsystem {
+public class ElevateArmReleasePiston extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  static VictorSP Wheel = new VictorSP(RobotMap.Wheel);
+  static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsLiftReleaseForwardChannel, RobotMap.PistonsLiftReleaseReverseChannel);
+
+
+  public ElevateArmReleasePiston() {
+    super();
+  }
 
   @Override
   public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  
-  public void SetSpeed(Double speed) {
-    Wheel.set(speed);
-    SmartDashboard.putNumber("Wheel", speed);
+
+  public void Active(Boolean isActive) {
+
+    doubleSolenoid.set((isActive)
+      ? DoubleSolenoid.Value.kForward
+      : DoubleSolenoid.Value.kReverse);
+      SmartDashboard.putBoolean("PistonOut", isActive);
 
   }
-
 }

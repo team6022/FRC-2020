@@ -14,70 +14,38 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
 
-  // public static final int Shoot = 0;
-  public static final int Wheel = 4;
 
-  // CAN Devices
+  // CAN DEVICES
   public static int leftMasterPort = 1;
   public static int leftSlavePort = 4;
   public static int rightMasterPort = 6;
   public static int rightSlavePort = 3;
 
 
-  public static int shootMaster = 2;
-  public static int shootSlave = 8;
+  public static int shootMaster = 8; // left
+  public static int shootSlave = 2; // right
 
-  public static int belt = 5;
+  public static int belt = 7;
+  public static final int ElevateArm = 9;
+  public static final int WheelMotor = 5;
+  public static final int IntakeArm = 10;
 
-  public static final int ElevateArm = 7;
 
-
-  public static final int ShootMotor = 0;
-
-  // TALON Settings
-  public static final int slot0 = 0;
-  public static final int slot1 = 1;
-  public static final int slot2 = 2;
-  public static final int slot3 = 3;
-
-  public static final int pidPrimary = 0;
-  public static final int pidTurn = 1;
-
-  public static final int timeoutMs = 30;
-  public static final int baseTrajPeriodMs = 0;
-  
-  public static final double driveNeutralDeadband = 0.1;
-
-  // 30AMP CURRENT LIMITS
-  public static final int current30AmpPeakCurrentLimit = 25;
-  public static final int current30AmpPeakCurrentDuration = 200;
-  public static final int current30AmpContinuousCurrentLimit = 25;
-
-  // 40AMP CURRENT LIMITS
-  public static final int current40AmpPeakCurrentLimit = 35;
-  public static final int current40AmpPeakCurrentDuration = 200;
-  public static final int current40AmpContinuousCurrentLimit = 35;
+  // FRONT (Victor SPX order)
+  // 1 - ID 10
+  // 2 - ID 05
+  // 3 - ID 07
+  // 4 - ID 09
 
   // PISTON CHANNELS
+  public static final int PistonsIntakeForwardChannel = 3;
+  public static final int PistonsIntakeReverseChannel = 4;
 
-  public static final int PistonsForwardChannel = 0;
-  public static final int PistonsReverseChannel = 1;
+  public static final int PistonsWheelForwardChannel = 2;
+  public static final int PistonsWheelReverseChannel = 5;
 
-  // INTAKE CHANNELS
+  public static final int PistonsLiftReleaseForwardChannel = 1;
+  public static final int PistonsLiftReleaseReverseChannel = 6;
 
-  public static final int IntakeChannel = 3;
-
-  // LIFTARM CHANNELS
-  public static final int IntakeArmChannel = 4;
-  
-
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
 }

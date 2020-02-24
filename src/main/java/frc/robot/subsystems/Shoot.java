@@ -35,7 +35,8 @@ public class Shoot extends Subsystem {
     shootMaster.configFactoryDefault();
     shootSlave.configFactoryDefault();
 
-    shootMaster.setInverted(true);
+    shootMaster.setInverted(false);
+    shootSlave.setInverted(true);
     // shootSlave.follow(shootMaster);
 
     shootMaster.set(ControlMode.PercentOutput, speed);

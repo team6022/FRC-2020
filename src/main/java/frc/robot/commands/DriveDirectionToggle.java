@@ -9,15 +9,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+
 /**
- * Lifts the arm for the color sensor.
+ * An example command.  You can replace me with your own command.
  */
-public class LiftColorArm extends Command {
-  public LiftColorArm() {
+public class DriveDirectionToggle extends Command {
+  public DriveDirectionToggle() {
     // Use requires() here to declare subsystem dependencies
     // requires(Robot.m_subsystem);
-    requires(Robot.Piston);
-
   }
 
   // Called just before this Command runs the first time
@@ -28,8 +27,7 @@ public class LiftColorArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-        Robot.Piston.Active(Robot.OI.getJoystickSar());
+      Robot.OI.driveInverted = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,7 +39,6 @@ public class LiftColorArm extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-        
   }
 
   // Called when another command which requires one or more of the same

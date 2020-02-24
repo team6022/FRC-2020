@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveManual;
 
@@ -20,82 +21,86 @@ import frc.robot.commands.DriveManual;
  * Subsystem for driving the robot via Xbox controller. Also allows differential drive.
  */
 public class Drive extends Subsystem {
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
 
-	public boolean tunable = false;
+  public boolean tunable = false;
 
-	public WPI_TalonSRX leftMaster, leftSlave, rightMaster, rightSlave;
+  public boolean driveInverted = Robot.OI.driveInverted;
 
-	public DifferentialDrive drive;
+  public WPI_TalonSRX leftMaster, leftSlave, rightMaster, rightSlave;
 
-	public static double turnMultiplier;
+  public DifferentialDrive drive;
 
-	public Drive(boolean tunable) {
-		this.tunable = tunable;
+  public static double turnMultiplier;
 
-		leftMaster = new WPI_TalonSRX(RobotMap.leftMasterPort);
-		leftSlave = new WPI_TalonSRX(RobotMap.leftSlavePort);
-		rightMaster = new WPI_TalonSRX(RobotMap.rightMasterPort);
-		rightSlave = new WPI_TalonSRX(RobotMap.rightSlavePort);
+  public Drive(boolean tunable) {
+    this.tunable = tunable;
 
-		drive = new DifferentialDrive(leftMaster, rightMaster);
+    leftMaster = new WPI_TalonSRX(RobotMap.leftMasterPort);
+    leftSlave = new WPI_TalonSRX(RobotMap.leftSlavePort);
+    rightMaster = new WPI_TalonSRX(RobotMap.rightMasterPort);
+    rightSlave = new WPI_TalonSRX(RobotMap.rightSlavePort);
 
-		// RESET TALONS
-		leftMaster.configFactoryDefault();
-		leftSlave.configFactoryDefault();
-		rightMaster.configFactoryDefault();
-		rightSlave.configFactoryDefault();
+    drive = new DifferentialDrive(leftMaster, rightMaster);
 
-		// LEFT MASTER
-		leftMaster.configNeutralDeadband(RobotMap.driveNeutralDeadband, RobotMap.timeoutMs);
-		leftMaster.setInverted(false);
-		leftSlave.setInverted(false);
-		leftMaster.setSensorPhase(false);
-		leftMaster.setNeutralMode(NeutralMode.Brake);
+    // RESET TALONS
+    leftMaster.configFactoryDefault();
+    leftSlave.configFactoryDefault();
+    rightMaster.configFactoryDefault();
+    rightSlave.configFactoryDefault();
 
-		// FOLLOW
-		leftSlave.follow(leftMaster);
+    // LEFT MASTER
+    // leftMaster.configNeutralDeadband(RobotMap.driveNeutralDeadband, RobotMap.timeoutMs);
+    leftMaster.setInverted(driveInverted);
+    leftSlave.setInverted(driveInverted);
 
-		// RIGHT MASTER
-		rightMaster.configNeutralDeadband(RobotMap.driveNeutralDeadband, RobotMap.timeoutMs);
-		rightMaster.setInverted(false);
-		rightSlave.setInverted(false);
-		rightMaster.setSensorPhase(false);
-		rightMaster.setNeutralMode(NeutralMode.Brake);
+    leftMaster.setSensorPhase(false);
+    leftMaster.setNeutralMode(NeutralMode.Brake);
 
-		// FOLLOW
-		rightSlave.follow(rightMaster);
+    // FOLLOW
+    leftSlave.follow(leftMaster);
 
-		// Current Limiting
-		leftMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
-		leftMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
-		leftMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
-		leftMaster.enableCurrentLimit(true);
+    // RIGHT MASTER
+    // rightMaster.configNeutralDeadband(RobotMap.driveNeutralDeadband, RobotMap.timeoutMs);
+    rightMaster.setInverted(driveInverted);
+    rightSlave.setInverted(driveInverted);
 
-		rightMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
-		rightMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
-		rightMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
-		rightMaster.enableCurrentLimit(true);
+    rightMaster.setSensorPhase(false);
+    rightMaster.setNeutralMode(NeutralMode.Brake);
 
-		turnMultiplier = .4;
-	}
+    // FOLLOW
+    rightSlave.follow(rightMaster);
 
-	// DRIVE THE MOTORS
-	public void manualDrive(double move, double turn) {
-		turn = turn * turnMultiplier;
-		drive.arcadeDrive(move, turn, false);
-	}
+    // Current Limiting
+    // leftMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
+    // leftMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
+    // leftMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
+    // leftMaster.enableCurrentLimit(true);
 
-	public void stop() {
-		drive.tankDrive(0, 0);
-	}
+    // rightMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
+    // rightMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
+    // rightMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
+    // rightMaster.enableCurrentLimit(true);
 
-	@Override
-	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+    turnMultiplier = .4;
+  }
 
-		setDefaultCommand(new DriveManual());
-	}
+  // DRIVE THE MOTORS
+  public void manualDrive(double move, double turn) {
+    turn = turn * turnMultiplier;
+    drive.arcadeDrive(move, turn, false);
+  }
+
+  public void stop() {
+    drive.tankDrive(0, 0);
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
+
+    setDefaultCommand(new DriveManual());
+  }
 }

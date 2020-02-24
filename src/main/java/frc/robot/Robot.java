@@ -20,12 +20,14 @@ import edu.wpi.first.networktables.NetworkTable;
 import frc.robot.commands.*;
 // subsystems
 import frc.robot.subsystems.Shoot;
-import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.WheelMotor;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Belt;
-import frc.robot.subsystems.Piston;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.BeltMotor;
+import frc.robot.subsystems.IntakeArmMotor;
+import frc.robot.subsystems.IntakeArmPiston;
+import frc.robot.subsystems.WheelPiston;
 import frc.robot.subsystems.ElevateArm;
+import frc.robot.subsystems.ElevateArmReleasePiston;
 
 // color sensor
 import com.revrobotics.ColorSensorV3;
@@ -55,15 +57,17 @@ public class Robot extends TimedRobot {
 
   public static OI OI;
   public static Shoot Shoot;
-  public static ColorWheel Wheel;
-  public static Belt Belt;
-  public static Piston Piston;
-  public static Intake Intake;
-  public static IntakeArm IntakeArm;
+  public static WheelMotor WheelMotor;
+  public static BeltMotor BeltMotor;
+  public static IntakeArmMotor IntakeArmMotor;
+  public static IntakeArmPiston IntakeArmPiston;
+  public static WheelPiston WheelPiston;
   public static ElevateArm ElevateArm;
+  public static ElevateArmReleasePiston ElevateArmReleasePiston;
+  public static Orca Orca;
 
   public static Drive driveSubsystem;
- 
+
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
 
   private final ColorMatch m_colorMatcher = new ColorMatch();
@@ -74,12 +78,12 @@ public class Robot extends TimedRobot {
 
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
-  
+
   // private Rev2mDistanceSensor distSens = new Rev2mDistanceSensor(Port.kOnboard);
 
 
 
-  
+
 
   // camera
   // NetworkTable table = NetworkTable.getTable("limelight");
@@ -88,7 +92,7 @@ public class Robot extends TimedRobot {
   // double targetArea = table.getNumber("ta", 0);
   // double targetSkew = table.getNumber("ts", 0);
 
-  
+
   Command autonomousCommand;
   /**
    * This function is run when the robot is first started up and should be
@@ -100,24 +104,26 @@ public class Robot extends TimedRobot {
     m_colorMatcher.addColorMatch(kBlueTarget);
     m_colorMatcher.addColorMatch(kGreenTarget);
     m_colorMatcher.addColorMatch(kRedTarget);
-    m_colorMatcher.addColorMatch(kYellowTarget);  
+    m_colorMatcher.addColorMatch(kYellowTarget);
 
     // Loads cameras.
     CameraServer.getInstance().startAutomaticCapture(0);
     CameraServer.getInstance().startAutomaticCapture(1);
-    
-    
 
-		// Loads robots controls.
-    Wheel = new ColorWheel();
+
+    // Loads robots controls.
+    WheelMotor = new WheelMotor();
     Shoot = new Shoot();
     driveSubsystem = new Drive(false);
-    Belt = new Belt();
-    Piston = new Piston();
-    Intake = new Intake();
-    IntakeArm = new IntakeArm();
+    BeltMotor = new BeltMotor();
+    IntakeArmMotor = new IntakeArmMotor();
+    IntakeArmPiston = new IntakeArmPiston();
+    WheelPiston = new WheelPiston();
     ElevateArm = new ElevateArm();
+    ElevateArmReleasePiston = new ElevateArmReleasePiston();
+    Orca = new Orca();
     OI = new OI(); // Keep OI at the bottom
+
   }
 
   /**
@@ -137,10 +143,10 @@ public class Robot extends TimedRobot {
      * The method GetColor() returns a normalized color value from the sensor and can be
      * useful if outputting the color to an RGB LED or similar. To
      * read the raw color, use GetRawColor().
-     * 
+     *
      * The color sensor works best when within a few inches from an object in
      * well lit conditions (the built in LED is a big help here!). The farther
-     * an object is the more light from the surroundings will bleed into the 
+     * an object is the more light from the surroundings will bleed into the
      * measurements and make it difficult to accurately determine its color.
      */
     Color detectedColor = m_colorSensor.getColor();
@@ -174,7 +180,7 @@ public class Robot extends TimedRobot {
     double area = ta.getDouble(0.0);
 
     /**
-     * Open Smart Dashboard or Shuffleboard to see the color detected by the 
+     * Open Smart Dashboard or Shuffleboard to see the color detected by the
      * sensor.
      */
     SmartDashboard.putNumber("Red", detectedColor.red);
@@ -207,7 +213,10 @@ public class Robot extends TimedRobot {
     //   SmartDashboard.putNumber("Range", distSens.getRange());
     //   SmartDashboard.putNumber("Timestamp", distSens.getTimestamp());
     // }
-    
+
+    // Set Autonomous Command
+    // autonomousCommand = new AutonomousCommand();
+
   }
 
   /**
@@ -246,6 +255,8 @@ public class Robot extends TimedRobot {
      * = new MyAutoCommand(); break; case "Default Auto": default:
      * autonomousCommand = new ExampleCommand(); break; }
      */
+
+
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {

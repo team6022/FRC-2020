@@ -7,34 +7,30 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import frc.robot.RobotMap;
 /**
- * Subsystem for the Belt command.
+ * Subsystem for spinning the ColorWheel for a certain amount of times and for a certain color
  */
-public class Belt extends Subsystem {
+public class WheelMotor extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  static WPI_TalonSRX belt = new WPI_TalonSRX(RobotMap.belt);
+  static VictorSPX Wheel = new VictorSPX(RobotMap.WheelMotor);
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-
+  
   public void SetSpeed(Double speed) {
-
-    belt.configFactoryDefault();
-    belt.set(ControlMode.PercentOutput, speed);
-    // belt.setInverted(true);
-
-    SmartDashboard.putNumber("Belt", speed);
+    Wheel.set(ControlMode.PercentOutput, speed);
+    SmartDashboard.putNumber("Wheel", speed);
 
   }
+
 }

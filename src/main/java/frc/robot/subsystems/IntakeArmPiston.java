@@ -10,22 +10,20 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 import frc.robot.RobotMap;
 
 /**
  * Moves intake up and down
  */
-public class Piston extends Subsystem {
+public class IntakeArmPiston extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsForwardChannel, RobotMap.PistonsReverseChannel);
+  static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsIntakeForwardChannel, RobotMap.PistonsIntakeReverseChannel);
 
- 
-  public Piston() {
-        super();
+
+  public IntakeArmPiston() {
+    super();
   }
 
   @Override
@@ -34,9 +32,8 @@ public class Piston extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void Active(XboxController Sarjoy) {
-    
-    boolean isActive = (Sarjoy.getTriggerAxis(Hand.kRight) >= 0.9);
+  public void Active(Boolean isActive) {
+
     doubleSolenoid.set((isActive)
       ? DoubleSolenoid.Value.kForward
       : DoubleSolenoid.Value.kReverse);

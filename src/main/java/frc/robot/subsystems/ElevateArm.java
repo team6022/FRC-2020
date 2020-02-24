@@ -8,32 +8,29 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import frc.robot.RobotMap;
 
-
 /**
  * Controls ball intake going up.
  */
 public class ElevateArm extends Subsystem {
 
-	static VictorSPX ElevateArm = new VictorSPX(RobotMap.ElevateArm);
+  static VictorSPX ElevateArm = new VictorSPX(RobotMap.ElevateArm);
 
-	public ElevateArm()
-	{
-		super();
-	}
+  public ElevateArm() {
+    super();
+  }
 
-	public void initDefaultCommand()
-	{
-	}
+  public void initDefaultCommand() {
+  }
 
-	/**
-	* Intake toggles ball intake
-	*
-	* @param speed what direction to turn - Positive speed means take ball in, negative means shoot ball out
-	*/
-	public void LiftArm(Double speed)
-	{
-		ElevateArm.set(ControlMode.PercentOutput, speed);
-		SmartDashboard.putNumber("ElevateArm", speed);
-	}
+  /**
+   * Intake toggles ball intake
+   *
+   * @param speed what direction to turn - Positive speed means take ball in,
+   *              negative means shoot ball out
+   */
+  public void LiftArm(Double speed) {
+    ElevateArm.set(ControlMode.PercentOutput, speed);
+    SmartDashboard.putNumber("ElevateArm", speed);
+  }
 
 }

@@ -7,19 +7,20 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * This command shoots out the Power Cells at variable speeds
+ * An example command. You can replace me with your own command.
  */
+public class IntakeArmMotor extends Command {
 
-public class ShootTrigger extends Command {
+    Double _Speed = 0.0;
 
-    public ShootTrigger() {
-        requires(Robot.Shoot);
+    public IntakeArmMotor(Double Speed) {
+        requires(Robot.IntakeArmMotor);
+
+        _Speed = Speed;
     }
 
     // Called just before this Command runs the first time
@@ -30,21 +31,7 @@ public class ShootTrigger extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-
-
-        Double speed = 0.0;
-        XboxController Sarjoy = Robot.OI.getJoystickSar();
-
-        // check to see if trigger is held
-        if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.8) {
-            speed = 0.9;
-        } else if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.03) {
-            speed = 0.75;
-        }
-
-        // run motors
-        Robot.Shoot.SetSpeed(speed);
-
+        Robot.IntakeArmMotor.IntakeBall(_Speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -10,36 +10,45 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ElevateArm extends Command {
+/**
+ * An example command.  You can replace me with your own command.
+ */
+public class ElevateArmReleasePiston extends Command {
 
-  Double _Speed = 0.0;
+Boolean _isActive = true;
 
-  /**
-   * Intake toggles ball intake. Puts intake up
-   *
-   * @param speed what direction to turn - Positive speed means take ball in,
-   *              negative means shoot ball out
-   */
-  public ElevateArm(Double Speed) {
-    requires(Robot.ElevateArm);
-    _Speed = Speed;
+  public ElevateArmReleasePiston(Boolean isActive) {
+    requires(Robot.ElevateArmReleasePiston);
+
+    _isActive = isActive;
+
   }
 
+  // Called just before this Command runs the first time
+  @Override
   protected void initialize() {
   }
 
+  // Called repeatedly when this Command is scheduled to run
+  @Override
   protected void execute() {
-    Robot.ElevateArm.LiftArm(_Speed);
+    Robot.ElevateArmReleasePiston.Active(_isActive);
   }
 
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
+  // Called once after isFinished returns true
+  @Override
   protected void end() {
   }
 
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  @Override
   protected void interrupted() {
   }
-
 }

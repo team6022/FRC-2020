@@ -68,6 +68,8 @@ public class OI {
     return Branjoy;
   }
 
+  public static Boolean driveInverted = false;
+
   public OI() {
     // Allows us to receive the randomized color for Position Control.
     String gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -96,45 +98,77 @@ public class OI {
 
     // Sarjoy Input ===============================================================
 
-    // shoot
+    // shoot - this has been moved to the trigger
     // XBoxRT.whileHeld(new Shoot(0.8));
     // XBoxRT.whenReleased(new Shoot(0.0));
 
-    // belt
-    XBoxLB.whileHeld(new Belt(0.7));
-    XBoxLB.whenReleased(new Belt(0.0));
 
-    // belt back
-    XBoxBack.whileHeld(new Belt(-0.4));
-    XBoxBack.whenReleased(new Belt(0.0));
 
-    // wheel
-    XBoxB.whileHeld(new Wheel(0.15, colorStop));
-    XBoxB.whenReleased(new Wheel(0.0, "Unknown"));
 
-    // liftarm
-    XBoxRB.whileHeld(new LiftColorArm());
+    // belt - this has been moved to the trigger
+    // XBoxLB.whileHeld(new Belt(0.7));
+    // XBoxLB.whenReleased(new Belt(0.0));
 
-    // intake
-    JoyYellow.whileHeld(new Intake(0.5));
-    JoyYellow.whenReleased(new Intake(0.0));
+    // Intake Motor
+    XBoxA.whileHeld(new IntakeArmMotor(0.5));
+    XBoxA.whenReleased(new IntakeArmMotor(0.0));
 
-    // intakearm
-    XBoxDPadDown.whenPressed(new IntakeArm());
+
+    // Wheel Piston
+    XBoxLB.whenPressed(new WheelPiston(true));
+    XBoxLB.whenReleased(new WheelPiston(false));
+
+    // Wheel Motor
+    XBoxRB.whileHeld(new WheelMotor(0.4, colorStop));
+    XBoxRB.whenReleased(new WheelMotor(0.0, "Unknown"));
+
+
+    // intake piston
+    XBoxDPadUp.whenPressed(new IntakeArmPiston(false));
+    XBoxDPadDown.whenPressed(new IntakeArmPiston(true));
+
+
+    // wheel piston
+    XBoxDPadLeft.whenPressed(new WheelPiston(false));
+    XBoxDPadRight.whenPressed(new WheelPiston(true));
+
+
+    // lift arm
+    XBoxB.whenPressed(new ElevateArm(-0.4));
+    XBoxB.whenReleased(new ElevateArm(0.0));
+
+    // lift arm wind up (make sure wrench is off)
+    XBoxBack.whenPressed(new ElevateArm(0.4));
+    XBoxBack.whenReleased(new ElevateArm(0.0));
+
+    // lift arm release
+    XBoxY.whenPressed(new ElevateArmReleasePiston(true));
+    XBoxY.whenReleased(new ElevateArmReleasePiston(false));
+
+
+    XBoxX.whenReleased(new DriveDirectionToggle());
+
+
+    // run orca
+    XBoxStart.whenPressed(new Orca());
 
 
     // Branjoy Input ===============================================================
 
 
     // colors
-    JoyGreen.whileHeld(new Wheel(0.15, "G"));
-    JoyGreen.whenReleased(new Wheel(0.0, "Unknown"));
-    JoyRed.whileHeld(new Wheel(0.15, "R"));
-    JoyRed.whenReleased(new Wheel(0.0, "Unknown"));
-    JoyBlue.whileHeld(new Wheel(0.15, "B"));
-    JoyBlue.whenReleased(new Wheel(0.0, "Unknown"));
-    JoyYellow.whileHeld(new Wheel(0.15, "Y"));
-    JoyYellow.whenReleased(new Wheel(0.0, "Unknown"));
+    // JoyGreen.whileHeld(new Wheel(0.15, "G"));
+    // JoyGreen.whenReleased(new Wheel(0.0, "Unknown"));
+    // JoyRed.whileHeld(new Wheel(0.15, "R"));
+    // JoyRed.whenReleased(new Wheel(0.0, "Unknown"));
+    // JoyBlue.whileHeld(new Wheel(0.15, "B"));
+    // JoyBlue.whenReleased(new Wheel(0.0, "Unknown"));
+    // JoyYellow.whileHeld(new Wheel(0.15, "Y"));
+    // JoyYellow.whenReleased(new Wheel(0.0, "Unknown"));
+
+    // intake
+    // JoyYellow.whileHeld(new Intake(0.5));
+    // JoyYellow.whenReleased(new Intake(0.0));
 
     // elevatearm
     JoyDPadUp.whileHeld(new ElevateArm(0.5));
@@ -142,25 +176,10 @@ public class OI {
     JoyDPadDown.whileHeld(new ElevateArm(-0.5));
     JoyDPadDown.whenReleased(new ElevateArm(0.0));
 
+    // JoyLB.whenPressed(new IntakePiston(true));
+    // JoyLB.whenPressed(new IntakePiston(false));
+
+
   }
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
-
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
-
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
-
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
-
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
 }
