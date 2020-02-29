@@ -68,7 +68,6 @@ public class OI {
     return Branjoy;
   }
 
-  public static Boolean driveInverted = false;
 
   public OI() {
     // Allows us to receive the randomized color for Position Control.
@@ -145,6 +144,9 @@ public class OI {
     XBoxY.whenPressed(new ElevateArmReleasePiston(true));
     XBoxY.whenReleased(new ElevateArmReleasePiston(false));
 
+    XBoxL3.whenPressed(new ShootPiston(false));
+    XBoxR3.whenPressed(new ShootPiston(true));
+
 
     XBoxX.whenReleased(new DriveDirectionToggle());
 
@@ -175,6 +177,10 @@ public class OI {
     JoyDPadUp.whenReleased(new ElevateArm(0.0));
     JoyDPadDown.whileHeld(new ElevateArm(-0.5));
     JoyDPadDown.whenReleased(new ElevateArm(0.0));
+
+    // Intake
+    JoyGreen.whileHeld(new IntakeArmMotor(0.5));
+    JoyGreen.whenReleased(new IntakeArmMotor(0.0));
 
     // JoyLB.whenPressed(new IntakePiston(true));
     // JoyLB.whenPressed(new IntakePiston(false));

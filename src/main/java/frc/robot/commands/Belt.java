@@ -16,8 +16,21 @@ import frc.robot.Robot;
  */
 public class Belt extends Command {
 
+
+  Double _speed = 0.0;
+  Boolean autoShoot = false;
+
+
+
   public Belt() {
     requires(Robot.BeltMotor);
+  }
+
+  public Belt(Double Speed) {
+    requires(Robot.BeltMotor);
+    _speed = Speed;
+    autoShoot = true;
+
   }
 
   // Called just before this Command runs the first time
@@ -29,14 +42,20 @@ public class Belt extends Command {
   @Override
   protected void execute() {
 
-    Double Speed = 0.0;
+
+    // System.out.println(autoShoot);
 
     // check to see if trigger is held
-    if (Robot.OI.getJoystickSar().getTriggerAxis(Hand.kLeft) > 0.5) {
-      Speed = 0.7;
+    if (!autoShoot) {
+
+      if (Robot.OI.getJoystickSar().getTriggerAxis(Hand.kLeft) > 0.5) {
+        _speed = 0.7;
+      } else {
+        _speed = 0.0;
+      }
     }
 
-    Robot.BeltMotor.SetSpeed(Speed);
+    Robot.BeltMotor.SetSpeed(_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

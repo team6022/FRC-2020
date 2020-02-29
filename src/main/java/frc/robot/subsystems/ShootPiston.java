@@ -16,12 +16,12 @@ import frc.robot.RobotMap;
 /**
  * Moves intake up and down
  */
-public class IntakeArmPiston extends Subsystem {
+public class ShootPiston extends Subsystem {
 
-  static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsIntakeForwardChannel,
-      RobotMap.PistonsIntakeReverseChannel);
+  static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsBallReleaseForwardChannel,
+      RobotMap.PistonsBallReleaseReverseChannel);
 
-  public IntakeArmPiston() {
+  public ShootPiston() {
     super();
   }
 
@@ -36,7 +36,7 @@ public class IntakeArmPiston extends Subsystem {
       ? DoubleSolenoid.Value.kForward
       : DoubleSolenoid.Value.kReverse);
 
-    SmartDashboard.putBoolean("IntakeArmPiston", isActive);
+    SmartDashboard.putBoolean("ShootPiston", isActive);
 
   }
 }

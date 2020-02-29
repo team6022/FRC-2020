@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveManual;
 
@@ -24,9 +23,9 @@ public class Drive extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public boolean tunable = false;
+  public boolean driveInverted = false;
 
-  public boolean driveInverted = Robot.OI.driveInverted;
+  public boolean tunable = false;
 
   public WPI_TalonSRX leftMaster, leftSlave, rightMaster, rightSlave;
 
@@ -51,7 +50,6 @@ public class Drive extends Subsystem {
     rightSlave.configFactoryDefault();
 
     // LEFT MASTER
-    // leftMaster.configNeutralDeadband(RobotMap.driveNeutralDeadband, RobotMap.timeoutMs);
     leftMaster.setInverted(driveInverted);
     leftSlave.setInverted(driveInverted);
 
@@ -62,7 +60,6 @@ public class Drive extends Subsystem {
     leftSlave.follow(leftMaster);
 
     // RIGHT MASTER
-    // rightMaster.configNeutralDeadband(RobotMap.driveNeutralDeadband, RobotMap.timeoutMs);
     rightMaster.setInverted(driveInverted);
     rightSlave.setInverted(driveInverted);
 
@@ -72,16 +69,6 @@ public class Drive extends Subsystem {
     // FOLLOW
     rightSlave.follow(rightMaster);
 
-    // Current Limiting
-    // leftMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
-    // leftMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
-    // leftMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
-    // leftMaster.enableCurrentLimit(true);
-
-    // rightMaster.configPeakCurrentLimit(RobotMap.current40AmpPeakCurrentLimit, RobotMap.timeoutMs);
-    // rightMaster.configPeakCurrentDuration(RobotMap.current40AmpPeakCurrentDuration, RobotMap.timeoutMs);
-    // rightMaster.configContinuousCurrentLimit(RobotMap.current40AmpContinuousCurrentLimit, RobotMap.timeoutMs);
-    // rightMaster.enableCurrentLimit(true);
 
     turnMultiplier = .4;
   }

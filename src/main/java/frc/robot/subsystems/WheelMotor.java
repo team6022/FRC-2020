@@ -14,8 +14,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import frc.robot.RobotMap;
+
 /**
- * Subsystem for spinning the ColorWheel for a certain amount of times and for a certain color
+ * Subsystem for spinning the ColorWheel for a certain amount of times and for a
+ * certain color
  */
 public class WheelMotor extends Subsystem {
   // Put methods for controlling this subsystem
@@ -26,10 +28,10 @@ public class WheelMotor extends Subsystem {
   public void initDefaultCommand() {
     // setDefaultCommand(new MySpecialCommand());
   }
-  
+
   public void SetSpeed(Double speed) {
     Wheel.set(ControlMode.PercentOutput, speed);
-    SmartDashboard.putNumber("Wheel", speed);
+    SmartDashboard.putNumber("WheelMotor", speed);
 
   }
 

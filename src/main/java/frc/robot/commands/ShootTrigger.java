@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,8 +19,18 @@ import frc.robot.Robot;
 
 public class ShootTrigger extends Command {
 
+    Double _speed = 0.0;
+    XboxController Sarjoy = Robot.OI.getJoystickSar();
+    Boolean autoShoot = false;
+
     public ShootTrigger() {
         requires(Robot.Shoot);
+    }
+
+    public ShootTrigger(Double Speed) {
+        requires(Robot.Shoot);
+        _speed = Speed;
+        autoShoot = true;
     }
 
     // Called just before this Command runs the first time
@@ -31,19 +42,21 @@ public class ShootTrigger extends Command {
     @Override
     protected void execute() {
 
-
-        Double speed = 0.0;
-        XboxController Sarjoy = Robot.OI.getJoystickSar();
-
         // check to see if trigger is held
-        if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.8) {
-            speed = 0.9;
-        } else if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.03) {
-            speed = 0.75;
+        if (!autoShoot) {
+            if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.8) {
+                _speed = 0.9;
+            } else if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.03) {
+                _speed = 0.75;
+            } else {
+                _speed = 0.0;
+            }
         }
 
+
         // run motors
-        Robot.Shoot.SetSpeed(speed);
+        Robot.Shoot.SetSpeed(_speed);
+
 
     }
 

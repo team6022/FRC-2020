@@ -17,10 +17,8 @@ import frc.robot.RobotMap;
  * Moves intake up and down
  */
 public class ElevateArmReleasePiston extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsLiftReleaseForwardChannel, RobotMap.PistonsLiftReleaseReverseChannel);
 
+  static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsLiftReleaseForwardChannel, RobotMap.PistonsLiftReleaseReverseChannel);
 
   public ElevateArmReleasePiston() {
     super();
@@ -28,7 +26,6 @@ public class ElevateArmReleasePiston extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
@@ -37,7 +34,8 @@ public class ElevateArmReleasePiston extends Subsystem {
     doubleSolenoid.set((isActive)
       ? DoubleSolenoid.Value.kForward
       : DoubleSolenoid.Value.kReverse);
-      SmartDashboard.putBoolean("PistonOut", isActive);
+
+    SmartDashboard.putBoolean("ElevateArmReleasePiston", isActive);
 
   }
 }

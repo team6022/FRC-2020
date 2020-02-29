@@ -48,4 +48,7 @@ public class RobotMap {
   public static final int PistonsLiftReleaseForwardChannel = 1;
   public static final int PistonsLiftReleaseReverseChannel = 6;
 
+  public static final int PistonsBallReleaseForwardChannel = 0;
+  public static final int PistonsBallReleaseReverseChannel = 7;
+
 }

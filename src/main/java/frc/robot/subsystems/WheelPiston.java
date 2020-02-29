@@ -17,27 +17,25 @@ import frc.robot.RobotMap;
  * Moves intake up and down
  */
 public class WheelPiston extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+
   static DoubleSolenoid doubleSolenoid = new DoubleSolenoid(RobotMap.PistonsWheelForwardChannel, RobotMap.PistonsWheelReverseChannel);
 
- 
   public WheelPiston() {
     super();
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
   public void Active(Boolean isActive) {
-    
+
     doubleSolenoid.set((isActive)
       ? DoubleSolenoid.Value.kForward
       : DoubleSolenoid.Value.kReverse);
-      SmartDashboard.putBoolean("PistonOut", isActive);
+
+    SmartDashboard.putBoolean("WheelPiston", isActive);
 
   }
 }

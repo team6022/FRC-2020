@@ -7,63 +7,32 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-
 import frc.robot.Robot;
 
 /**
- * This command will be used to drive the robot via Xbox controller. Also allows
- * differential drive.
+ * An example command.  You can replace me with your own command.
  */
-public class DriveManual extends Command {
+public class ShootPiston extends Command {
 
-  Double _move = 0.0;
-  Double _turn = 0.0;
-  Boolean autoDrive = false;
+Boolean _isActive = false;
 
-  public DriveManual() {
-    requires(Robot.driveSubsystem);
-  }
+  public ShootPiston(Boolean isActive) {
+    requires(Robot.ShootPiston);
 
-  public DriveManual(Double Move, Double Turn) {
-    requires(Robot.driveSubsystem);
-
-    _move = Move;
-    _turn = Turn;
-    autoDrive = true;
+    _isActive = isActive;
 
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.driveSubsystem.leftMaster.setNeutralMode(NeutralMode.Brake);
-    Robot.driveSubsystem.rightMaster.setNeutralMode(NeutralMode.Brake);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-
-
-
-    // if no values were passed in, use controller input
-    if (!autoDrive) {
-
-      // pull values from controller
-      _move = -Robot.OI.getJoystickSar().getY(Hand.kLeft);
-      _turn = Robot.OI.getJoystickSar().getX(Hand.kRight);
-
-      // set controller deadzone
-      _move = (_move > 0.1 || _move < -0.1) ? _move : 0;
-      _turn = (_turn > 0.1 || _turn < -0.1) ? _turn : 0;
-    }
-
-    Robot.driveSubsystem.manualDrive(_move, _turn);
+    Robot.ShootPiston.Active(_isActive);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -17,7 +17,9 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.networktables.NetworkTable;
+import frc.robot.autonomous.*;
 import frc.robot.commands.*;
+
 // subsystems
 import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.WheelMotor;
@@ -28,6 +30,7 @@ import frc.robot.subsystems.IntakeArmPiston;
 import frc.robot.subsystems.WheelPiston;
 import frc.robot.subsystems.ElevateArm;
 import frc.robot.subsystems.ElevateArmReleasePiston;
+import frc.robot.subsystems.ShootPiston;
 
 // color sensor
 import com.revrobotics.ColorSensorV3;
@@ -37,14 +40,6 @@ import com.revrobotics.ColorMatch;
 // limelight camera to SmartDashboard
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-
-
-// range
-// import com.revrobotics.Rev2mDistanceSensor;
-// import com.revrobotics.Rev2mDistanceSensor.Port;
-// import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
-
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -64,6 +59,7 @@ public class Robot extends TimedRobot {
   public static WheelPiston WheelPiston;
   public static ElevateArm ElevateArm;
   public static ElevateArmReleasePiston ElevateArmReleasePiston;
+  public static ShootPiston ShootPiston;
   public static Orca Orca;
 
   public static Drive driveSubsystem;
@@ -78,13 +74,6 @@ public class Robot extends TimedRobot {
 
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
 
-
-  // private Rev2mDistanceSensor distSens = new Rev2mDistanceSensor(Port.kOnboard);
-
-
-
-
-
   // camera
   // NetworkTable table = NetworkTable.getTable("limelight");
   // double targetOffsetAngle_Horizontal = table.getNumber("tx", 0);
@@ -92,14 +81,17 @@ public class Robot extends TimedRobot {
   // double targetArea = table.getNumber("ta", 0);
   // double targetSkew = table.getNumber("ts", 0);
 
-
   Command autonomousCommand;
+
   /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
   @Override
   public void robotInit() {
+
+    // Load SmartDashbaord Defaults
+    new SmartDashboardInit();
 
     m_colorMatcher.addColorMatch(kBlueTarget);
     m_colorMatcher.addColorMatch(kGreenTarget);
@@ -109,7 +101,6 @@ public class Robot extends TimedRobot {
     // Loads cameras.
     CameraServer.getInstance().startAutomaticCapture(0);
     CameraServer.getInstance().startAutomaticCapture(1);
-
 
     // Loads robots controls.
     WheelMotor = new WheelMotor();
@@ -121,33 +112,33 @@ public class Robot extends TimedRobot {
     WheelPiston = new WheelPiston();
     ElevateArm = new ElevateArm();
     ElevateArmReleasePiston = new ElevateArmReleasePiston();
+    ShootPiston = new ShootPiston();
     Orca = new Orca();
     OI = new OI(); // Keep OI at the bottom
 
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like diagnostics that you want ran during disabled, autonomous,
+   * teleoperated and test.
    *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
 
-
-
- /**
-     * The method GetColor() returns a normalized color value from the sensor and can be
-     * useful if outputting the color to an RGB LED or similar. To
-     * read the raw color, use GetRawColor().
+    /**
+     * The method GetColor() returns a normalized color value from the sensor and
+     * can be useful if outputting the color to an RGB LED or similar. To read the
+     * raw color, use GetRawColor().
      *
-     * The color sensor works best when within a few inches from an object in
-     * well lit conditions (the built in LED is a big help here!). The farther
-     * an object is the more light from the surroundings will bleed into the
-     * measurements and make it difficult to accurately determine its color.
+     * The color sensor works best when within a few inches from an object in well
+     * lit conditions (the built in LED is a big help here!). The farther an object
+     * is the more light from the surroundings will bleed into the measurements and
+     * make it difficult to accurately determine its color.
      */
     Color detectedColor = m_colorSensor.getColor();
 
@@ -174,14 +165,13 @@ public class Robot extends TimedRobot {
     NetworkTableEntry ty = table.getEntry("ty");
     NetworkTableEntry ta = table.getEntry("ta");
 
-    //read values periodically
+    // read values periodically
     double x = tx.getDouble(0.0);
     double y = ty.getDouble(0.0);
     double area = ta.getDouble(0.0);
 
     /**
-     * Open Smart Dashboard or Shuffleboard to see the color detected by the
-     * sensor.
+     * Open Smart Dashboard or Shuffleboard to see the color detected by the sensor.
      */
     SmartDashboard.putNumber("Red", detectedColor.red);
     SmartDashboard.putNumber("Green", detectedColor.green);
@@ -189,40 +179,19 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
 
-    // SmartDashboard inputs for driving, shooting, and ColorWheel motors
-    SmartDashboard.setDefaultNumber("TalonFX/leftMaster", 0);
-    SmartDashboard.setDefaultNumber("TalonFX/leftSlave", 0);
-    SmartDashboard.setDefaultNumber("TalonFX/rightMaster", 0);
-    SmartDashboard.setDefaultNumber("TalonFX/rightSlave", 0);
-
-    SmartDashboard.setDefaultNumber("Wheel", 0);
-    SmartDashboard.setDefaultNumber("Shoot", 0);
-    SmartDashboard.setDefaultNumber("Belt", 0);
-
-
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
 
-    // distSens.setRangeProfile(RangeProfile.kDefault);
-
-
-    // boolean isValid = distSens.isRangeValid();
-    // SmartDashboard.putBoolean("Valid", isValid);
-    // if(isValid) {
-    //   SmartDashboard.putNumber("Range", distSens.getRange());
-    //   SmartDashboard.putNumber("Timestamp", distSens.getTimestamp());
-    // }
-
     // Set Autonomous Command
-    // autonomousCommand = new AutonomousCommand();
+    autonomousCommand = new auto1();
 
   }
 
   /**
-   * This function is called once each time the robot enters Disabled mode.
-   * You can use it to reset any subsystem information you want to clear when
-   * the robot is disabled.
+   * This function is called once each time the robot enters Disabled mode. You
+   * can use it to reset any subsystem information you want to clear when the
+   * robot is disabled.
    */
   @Override
   public void disabledInit() {
@@ -236,27 +205,26 @@ public class Robot extends TimedRobot {
 
   /**
    * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString code to get the auto name from the text box below the Gyro
+   * between different autonomous modes using the dashboard. The sendable chooser
+   * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+   * remove all of the chooser code and uncomment the getString code to get the
+   * auto name from the text box below the Gyro
    *
-   * <p>You can add additional auto modes by adding additional commands to the
-   * chooser code above (like the commented example) or additional comparisons
-   * to the switch structure below with additional strings & commands.
+   * <p>
+   * You can add additional auto modes by adding additional commands to the
+   * chooser code above (like the commented example) or additional comparisons to
+   * the switch structure below with additional strings & commands.
    */
   @Override
   public void autonomousInit() {
     autonomousCommand.start();
 
     /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
+     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+     * switch(autoSelected) { case "My Auto": autonomousCommand = new
+     * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
+     * ExampleCommand(); break; }
      */
-
-
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {

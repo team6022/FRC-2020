@@ -36,7 +36,7 @@ public class BeltMotor extends Subsystem {
     belt.set(ControlMode.PercentOutput, speed);
     // belt.setInverted(true);
 
-    SmartDashboard.putNumber("Belt", speed);
+    SmartDashboard.putNumber("BeltMotor", speed);
 
   }
 }

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ShootTrigger;
 
@@ -37,12 +38,18 @@ public class Shoot extends Subsystem {
 
     shootMaster.setInverted(false);
     shootSlave.setInverted(true);
-    // shootSlave.follow(shootMaster);
+
 
     shootMaster.set(ControlMode.PercentOutput, speed);
     shootSlave.set(ControlMode.PercentOutput, speed);
 
-    SmartDashboard.putNumber("Shoot", speed);
+
+    // get the speed of the motor and activate the fron piston if it is going fast enough
+    // Robot.ShootPiston.Active((shootMaster.getSelectedSensorVelocity() > 0));
+
+
+    SmartDashboard.putNumber("Shoot/shootMaster", speed);
+    SmartDashboard.putNumber("Shoot/shootSlave", speed);
   }
 
 }
