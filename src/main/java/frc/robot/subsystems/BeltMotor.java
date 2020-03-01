@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -22,19 +22,21 @@ import frc.robot.commands.Belt;
 public class BeltMotor extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  static WPI_VictorSPX belt = new WPI_VictorSPX(RobotMap.belt);
+  static WPI_VictorSPX beltTop = new WPI_VictorSPX(RobotMap.beltTop);
+  static WPI_TalonSRX beltBottom = new WPI_TalonSRX(RobotMap.beltBottom);
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     setDefaultCommand(new Belt());
   }
 
   public void SetSpeed(Double speed) {
 
-    // belt.configFactoryDefault();
-    belt.set(ControlMode.PercentOutput, speed);
-    // belt.setInverted(true);
+
+    beltBottom.setInverted(true);
+
+    beltTop.set(ControlMode.PercentOutput, speed);
+    beltBottom.set(ControlMode.PercentOutput, speed - 0.05);
 
     SmartDashboard.putNumber("BeltMotor", speed);
 

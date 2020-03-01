@@ -45,16 +45,18 @@ public class OI {
   POVButton XBoxDPadLeft = new POVButton(Sarjoy, 270);
 
   // Buttons for Branjoy
-  Button JoyRed = new JoystickButton(Branjoy, 2);
-  Button JoyBlue = new JoystickButton(Branjoy, 3);
+  Button JoyRed = new JoystickButton(Branjoy, 3);
+  Button JoyBlue = new JoystickButton(Branjoy, 1);
   Button JoyYellow = new JoystickButton(Branjoy, 4);
-  Button JoyGreen = new JoystickButton(Branjoy, 1);
+  Button JoyGreen = new JoystickButton(Branjoy, 2);
   Button JoyLB = new JoystickButton(Branjoy, 5);
   Button JoyRB = new JoystickButton(Branjoy, 6);
-  Button JoyBack = new JoystickButton(Branjoy, 7);
-  Button JoyStart = new JoystickButton(Branjoy, 8);
-  Button JoyL3 = new JoystickButton(Branjoy, 9);
-  Button JoyR3 = new JoystickButton(Branjoy, 10);
+  Button JoyLT = new JoystickButton(Branjoy, 7);
+  Button JoyRT = new JoystickButton(Branjoy, 8);
+  Button JoyBack = new JoystickButton(Branjoy, 9);
+  Button JoyStart = new JoystickButton(Branjoy, 10);
+  Button JoyL3 = new JoystickButton(Branjoy, 11);
+  Button JoyR3 = new JoystickButton(Branjoy, 12);
   POVButton JoyDPadUp = new POVButton(Branjoy, 0);
   POVButton JoyDPadRight = new POVButton(Branjoy, 90);
   POVButton JoyDPadDown = new POVButton(Branjoy, 180);
@@ -67,7 +69,6 @@ public class OI {
   public Joystick getJoystickBran() {
     return Branjoy;
   }
-
 
   public OI() {
     // Allows us to receive the randomized color for Position Control.
@@ -101,62 +102,48 @@ public class OI {
     // XBoxRT.whileHeld(new Shoot(0.8));
     // XBoxRT.whenReleased(new Shoot(0.0));
 
-
-
-
     // belt - this has been moved to the trigger
     // XBoxLB.whileHeld(new Belt(0.7));
     // XBoxLB.whenReleased(new Belt(0.0));
 
-    // Intake Motor
-    XBoxA.whileHeld(new IntakeArmMotor(0.5));
-    XBoxA.whenReleased(new IntakeArmMotor(0.0));
+    XBoxBack.whileHeld(new Belt(-0.5));
+    XBoxBack.whenReleased(new Belt(0.0));
 
+    // Intake Motor
+    XBoxA.whenPressed(new IntakeArmMotor(0.5));
+    XBoxA.whenReleased(new IntakeArmMotor(0.0));
 
     // Wheel Piston
     XBoxLB.whenPressed(new WheelPiston(true));
     XBoxLB.whenReleased(new WheelPiston(false));
 
     // Wheel Motor
-    XBoxRB.whileHeld(new WheelMotor(0.4, colorStop));
+    XBoxRB.whileHeld(new WheelMotor(0.3, colorStop));
     XBoxRB.whenReleased(new WheelMotor(0.0, "Unknown"));
-
 
     // intake piston
     XBoxDPadUp.whenPressed(new IntakeArmPiston(false));
     XBoxDPadDown.whenPressed(new IntakeArmPiston(true));
 
-
     // wheel piston
     XBoxDPadLeft.whenPressed(new WheelPiston(false));
     XBoxDPadRight.whenPressed(new WheelPiston(true));
 
+    // toggle drive direction
+    XBoxB.whenReleased(new DriveDirectionToggle());
 
-    // lift arm
-    XBoxB.whenPressed(new ElevateArm(-0.4));
-    XBoxB.whenReleased(new ElevateArm(0.0));
-
-    // lift arm wind up (make sure wrench is off)
-    XBoxBack.whenPressed(new ElevateArm(0.4));
-    XBoxBack.whenReleased(new ElevateArm(0.0));
-
-    // lift arm release
+    // // lift arm release
     XBoxY.whenPressed(new ElevateArmReleasePiston(true));
     XBoxY.whenReleased(new ElevateArmReleasePiston(false));
 
-    XBoxL3.whenPressed(new ShootPiston(false));
-    XBoxR3.whenPressed(new ShootPiston(true));
 
-
-    XBoxX.whenReleased(new DriveDirectionToggle());
-
+    // try to align
+    // XBoxB.whileHeld(new LimeLightAuto());
 
     // run orca
-    XBoxStart.whenPressed(new Orca());
-
+    // XBoxStart.whenPressed(new Orca());
 
     // Branjoy Input ===============================================================
-
 
     // colors
     // JoyGreen.whileHeld(new Wheel(0.15, "G"));
@@ -169,14 +156,15 @@ public class OI {
     // JoyYellow.whenReleased(new Wheel(0.0, "Unknown"));
 
     // intake
-    // JoyYellow.whileHeld(new Intake(0.5));
-    // JoyYellow.whenReleased(new Intake(0.0));
+    JoyYellow.whenPressed(new ElevateArmReleasePiston(true));
+    JoyYellow.whenReleased(new ElevateArmReleasePiston(false));
 
     // elevatearm
-    JoyDPadUp.whileHeld(new ElevateArm(0.5));
-    JoyDPadUp.whenReleased(new ElevateArm(0.0));
     JoyDPadDown.whileHeld(new ElevateArm(-0.5));
     JoyDPadDown.whenReleased(new ElevateArm(0.0));
+
+    JoyBack.whileHeld(new ElevateArm(0.5));
+    JoyBack.whenReleased(new ElevateArm(0.0));
 
     // Intake
     JoyGreen.whileHeld(new IntakeArmMotor(0.5));
@@ -185,6 +173,17 @@ public class OI {
     // JoyLB.whenPressed(new IntakePiston(true));
     // JoyLB.whenPressed(new IntakePiston(false));
 
+    // Wheel Piston
+    JoyLT.whenPressed(new WheelPiston(true));
+    JoyLT.whenReleased(new WheelPiston(false));
+
+    // Wheel Motor
+    JoyRT.whileHeld(new WheelMotor(0.4, colorStop));
+    JoyRT.whenReleased(new WheelMotor(0.0, "Unknown"));
+
+    // lift arm release
+    JoyStart.whenPressed(new ElevateArmReleasePiston(true));
+    JoyStart.whenReleased(new ElevateArmReleasePiston(false));
 
   }
 

@@ -34,6 +34,8 @@ public class SmartDashboardInit {
         SmartDashboard.setDefaultNumber("WheelMotor", 0);
         SmartDashboard.setDefaultBoolean("WheelPiston", false);
 
+        SmartDashboard.setDefaultBoolean("DriveBackwards", false);
+
         // NetworkTable.initialize();
         // autoChooser = new SendableChooser();
         // autoChooser.addDefault("Default program", new auto1());

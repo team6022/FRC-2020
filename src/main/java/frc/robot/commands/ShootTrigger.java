@@ -42,6 +42,8 @@ public class ShootTrigger extends Command {
     @Override
     protected void execute() {
 
+
+
         // check to see if trigger is held
         if (!autoShoot) {
             if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.8) {

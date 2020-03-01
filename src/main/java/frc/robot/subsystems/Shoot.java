@@ -45,8 +45,10 @@ public class Shoot extends Subsystem {
 
 
     // get the speed of the motor and activate the fron piston if it is going fast enough
-    // Robot.ShootPiston.Active((shootMaster.getSelectedSensorVelocity() > 0));
+    Robot.ShootPiston.Active((shootMaster.getSelectedSensorVelocity() > 13000));
 
+
+    System.out.println(shootMaster.getSelectedSensorVelocity());
 
     SmartDashboard.putNumber("Shoot/shootMaster", speed);
     SmartDashboard.putNumber("Shoot/shootSlave", speed);

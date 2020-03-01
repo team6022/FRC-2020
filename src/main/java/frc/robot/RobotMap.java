@@ -22,14 +22,16 @@ public class RobotMap {
   public static int rightMasterPort = 6;
   public static int rightSlavePort = 3;
 
-
   public static int shootMaster = 8; // left
   public static int shootSlave = 2; // right
 
-  public static int belt = 7;
-  public static final int ElevateArm = 9;
-  public static final int WheelMotor = 5;
-  public static final int IntakeArm = 10;
+  public static int beltTop = 7;
+  public static int beltBottom = 11;
+
+  public static int ElevateArm = 9;
+  public static int WheelMotor = 5;
+  public static int IntakeArm = 10;
+
 
 
   // FRONT (Victor SPX order)

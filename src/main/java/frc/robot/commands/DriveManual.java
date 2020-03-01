@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 /**
@@ -22,6 +22,7 @@ public class DriveManual extends Command {
 
   Double _move = 0.0;
   Double _turn = 0.0;
+  Boolean _driveBackwards = false;
   Boolean autoDrive = false;
 
   public DriveManual() {
@@ -61,6 +62,13 @@ public class DriveManual extends Command {
       // set controller deadzone
       _move = (_move > 0.1 || _move < -0.1) ? _move : 0;
       _turn = (_turn > 0.1 || _turn < -0.1) ? _turn : 0;
+    }
+
+    // reverse drive direction
+    _driveBackwards = SmartDashboard.getBoolean("DriveBackwards", false);
+
+    if (_driveBackwards) {
+      _move = _move * -1;
     }
 
     Robot.driveSubsystem.manualDrive(_move, _turn);

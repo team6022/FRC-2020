@@ -16,11 +16,8 @@ import frc.robot.Robot;
  */
 public class Belt extends Command {
 
-
   Double _speed = 0.0;
   Boolean autoShoot = false;
-
-
 
   public Belt() {
     requires(Robot.BeltMotor);
@@ -42,12 +39,10 @@ public class Belt extends Command {
   @Override
   protected void execute() {
 
-
     // System.out.println(autoShoot);
 
     // check to see if trigger is held
     if (!autoShoot) {
-
       if (Robot.OI.getJoystickSar().getTriggerAxis(Hand.kLeft) > 0.5) {
         _speed = 0.7;
       } else {
@@ -61,7 +56,8 @@ public class Belt extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    // return false;
+    return _speed == 0.0;
   }
 
   // Called once after isFinished returns true
