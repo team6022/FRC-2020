@@ -22,7 +22,7 @@ public class WheelMotor extends Command {
   int colorCounter = 0;
   boolean okInc = false; // it's ok to increment
   String startColor = "Unknown";
- 
+
   int colorCheck = 0; // We will need to check the color a couple times to make sure it is correct
   String currentColor = "Unknown";
 
@@ -69,7 +69,7 @@ public class WheelMotor extends Command {
     // We will check the color a couple times to make sure it is getting the correct color
     if (currentColor.equals(sensedColor)) {
       colorCheck++;
-      System.out.println("color");
+      // System.out.println("color");
 
     }
 
@@ -88,7 +88,7 @@ public class WheelMotor extends Command {
       Robot.WheelMotor.SetSpeed(_Speed);
     }
 
-    System.out.println(colorCounter);
+    // System.out.println(colorCounter);
 
 
   }

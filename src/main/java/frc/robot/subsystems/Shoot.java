@@ -48,7 +48,7 @@ public class Shoot extends Subsystem {
     Robot.ShootPiston.Active((shootMaster.getSelectedSensorVelocity() > 13000));
 
 
-    System.out.println(shootMaster.getSelectedSensorVelocity());
+    // System.out.println(shootMaster.getSelectedSensorVelocity());
 
     SmartDashboard.putNumber("Shoot/shootMaster", speed);
     SmartDashboard.putNumber("Shoot/shootSlave", speed);

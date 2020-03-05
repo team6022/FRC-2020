@@ -29,6 +29,7 @@ public class IntakeArmMotor extends Subsystem {
    *              negative means shoot ball out
    */
   public void IntakeBall(Double speed) {
+    IntakeArm.setInverted(true);
     IntakeArm.set(ControlMode.PercentOutput, speed);
     SmartDashboard.putNumber("IntakeArmMotor", speed);
   }

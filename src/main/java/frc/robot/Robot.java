@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.util.Color;
@@ -82,6 +83,8 @@ public class Robot extends TimedRobot {
   // double targetSkew = table.getNumber("ts", 0);
 
   Command autonomousCommand;
+  SendableChooser<Command> chooser;
+
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -115,6 +118,26 @@ public class Robot extends TimedRobot {
     ShootPiston = new ShootPiston();
     Orca = new Orca();
     OI = new OI(); // Keep OI at the bottom
+
+    // ===========================================================================
+
+    // Set Autonomous Command
+
+    // autonomousCommand = new autoLeft();
+    // autonomousCommand = new autoCenter();
+    autonomousCommand = new autoRight();
+
+    // ===========================================================================
+
+    chooser = new SendableChooser<Command>();
+    chooser.setDefaultOption("Do Nothing", new doNothing());
+    chooser.addOption("Left Side", new autoLeft());
+    chooser.addOption("Center", new autoCenter());
+    chooser.addOption("Right Side", new autoRight());
+
+    SmartDashboard.putData("Autonomous Mode Chooser", chooser);
+
+
 
   }
 
@@ -166,9 +189,9 @@ public class Robot extends TimedRobot {
     NetworkTableEntry ta = table.getEntry("ta");
 
     // read values periodically
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
+    SmartDashboard.putNumber("LimelightX",  tx.getDouble(0.0));
+    SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
+    SmartDashboard.putNumber("LimelightArea", ta.getDouble(0.0));
 
     /**
      * Open Smart Dashboard or Shuffleboard to see the color detected by the sensor.
@@ -179,12 +202,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Confidence", match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
 
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
 
-    // Set Autonomous Command
-    autonomousCommand = new auto1();
+
+
+
 
   }
 
@@ -226,6 +247,10 @@ public class Robot extends TimedRobot {
      * ExampleCommand(); break; }
      */
 
+    // autonomousCommand = ;
+
+    // System.out.println(SmartDashboard.getString("Autonomous Mode Chooser", "none"));
+
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {
       autonomousCommand.start();
@@ -250,8 +275,7 @@ public class Robot extends TimedRobot {
       autonomousCommand.cancel();
     }
 
-    // distSens.setAutomaticMode(true);
-    // distSens.setEnabled(true);
+
   }
 
   /**

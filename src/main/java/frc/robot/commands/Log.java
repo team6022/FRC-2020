@@ -7,28 +7,19 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.RobotConfig;
 
 /**
- * This runs the conveyor belt. Power Cells will be run up to the fly wheels.
+ * An example command.  You can replace me with your own command.
  */
-public class Belt extends Command {
+public class Log extends Command {
 
-  Double _speed = 0.0;
-  Boolean autoShoot = false;
+  String _logText = "logging";
 
-  public Belt() {
-    requires(Robot.BeltMotor);
-  }
-
-  public Belt(Double Speed) {
-    requires(Robot.BeltMotor);
-    _speed = Speed;
-    autoShoot = true;
-
+  public Log(String logText) {
+    // Use requires() here to declare subsystem dependencies
+    // requires(Robot.m_subsystem);
+    _logText = logText;
   }
 
   // Called just before this Command runs the first time
@@ -39,28 +30,13 @@ public class Belt extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    // System.out.println(autoShoot);
-
-    // check to see if trigger is held
-    if (!autoShoot) {
-      if (Robot.OI.getJoystickSar().getTriggerAxis(Hand.kLeft) > RobotConfig.beltTriggerMaxSpeedPull) {
-        _speed = RobotConfig.beltTriggerMaxSpeed;
-      } else if (Robot.OI.getJoystickSar().getTriggerAxis(Hand.kLeft) > RobotConfig.beltTriggerMidSpeedPull) {
-        _speed = RobotConfig.beltTriggerMidSpeed;
-      } else {
-        _speed = 0.0;
-      }
-    }
-
-    Robot.BeltMotor.SetSpeed(_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    // return false;
-    return _speed == 0.0;
+    System.out.println(_logText + " =================================================");
+    return true;
   }
 
   // Called once after isFinished returns true
@@ -73,5 +49,4 @@ public class Belt extends Command {
   @Override
   protected void interrupted() {
   }
-
 }

@@ -7,9 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.autonomous.auto1;
 
 /**
  * Set SmartDashboard Defaults
@@ -36,10 +34,6 @@ public class SmartDashboardInit {
 
         SmartDashboard.setDefaultBoolean("DriveBackwards", false);
 
-        // NetworkTable.initialize();
-        // autoChooser = new SendableChooser();
-        // autoChooser.addDefault("Default program", new auto1());
-        // SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 
     }
 

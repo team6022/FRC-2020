@@ -106,11 +106,11 @@ public class OI {
     // XBoxLB.whileHeld(new Belt(0.7));
     // XBoxLB.whenReleased(new Belt(0.0));
 
-    XBoxBack.whileHeld(new Belt(-0.5));
+    XBoxBack.whileHeld(new Belt(RobotConfig.beltBackSpeed));
     XBoxBack.whenReleased(new Belt(0.0));
 
     // Intake Motor
-    XBoxA.whenPressed(new IntakeArmMotor(0.5));
+    XBoxA.whenPressed(new IntakeArmMotor(RobotConfig.intakeMotorSpeed));
     XBoxA.whenReleased(new IntakeArmMotor(0.0));
 
     // Wheel Piston
@@ -138,7 +138,7 @@ public class OI {
 
 
     // try to align
-    // XBoxB.whileHeld(new LimeLightAuto());
+    // XBoxR3.whenPressed(new LimeLightAuto());
 
     // run orca
     // XBoxStart.whenPressed(new Orca());
@@ -160,15 +160,18 @@ public class OI {
     JoyYellow.whenReleased(new ElevateArmReleasePiston(false));
 
     // elevatearm
-    JoyDPadDown.whileHeld(new ElevateArm(-0.5));
+    JoyDPadDown.whileHeld(new ElevateArm(RobotConfig.elevateArmLiftSpeed));
     JoyDPadDown.whenReleased(new ElevateArm(0.0));
 
-    JoyBack.whileHeld(new ElevateArm(0.5));
+    JoyBack.whileHeld(new ElevateArm(RobotConfig.elevateArmBackSpeed));
     JoyBack.whenReleased(new ElevateArm(0.0));
 
     // Intake
-    JoyGreen.whileHeld(new IntakeArmMotor(0.5));
+    JoyGreen.whileHeld(new IntakeArmMotor(RobotConfig.intakeMotorSpeed));
     JoyGreen.whenReleased(new IntakeArmMotor(0.0));
+
+    JoyRed.whileHeld(new IntakeArmMotor(-RobotConfig.intakeMotorSpeed));
+    JoyRed.whenReleased(new IntakeArmMotor(0.0));
 
     // JoyLB.whenPressed(new IntakePiston(true));
     // JoyLB.whenPressed(new IntakePiston(false));

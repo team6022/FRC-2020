@@ -28,15 +28,19 @@ public class BeltMotor extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new Belt());
+
+    beltTop.configFactoryDefault();
+    beltBottom.configFactoryDefault();
+
   }
 
   public void SetSpeed(Double speed) {
 
-
+    beltTop.setInverted(false);
     beltBottom.setInverted(true);
 
     beltTop.set(ControlMode.PercentOutput, speed);
-    beltBottom.set(ControlMode.PercentOutput, speed - 0.05);
+    beltBottom.set(ControlMode.PercentOutput, (speed * 0.8));
 
     SmartDashboard.putNumber("BeltMotor", speed);
 

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConfig;
 
 /**
  * This command shoots out the Power Cells at variable speeds
@@ -46,10 +47,10 @@ public class ShootTrigger extends Command {
 
         // check to see if trigger is held
         if (!autoShoot) {
-            if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.8) {
-                _speed = 0.9;
-            } else if (Sarjoy.getTriggerAxis(Hand.kRight) > 0.03) {
-                _speed = 0.75;
+            if (Sarjoy.getTriggerAxis(Hand.kRight) > RobotConfig.shootTriggerMaxSpeedPull) {
+                _speed = RobotConfig.shootTriggerMaxSpeed;
+            } else if (Sarjoy.getTriggerAxis(Hand.kRight) > RobotConfig.shootTriggerMidSpeedPull) {
+                _speed = RobotConfig.shootTriggerMidSpeed;
             } else {
                 _speed = 0.0;
             }
