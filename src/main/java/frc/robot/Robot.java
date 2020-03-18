@@ -125,7 +125,7 @@ public class Robot extends TimedRobot {
 
     // autonomousCommand = new autoLeft();
     // autonomousCommand = new autoCenter();
-    autonomousCommand = new autoRight();
+    // autonomousCommand = new autoRight();
 
     // ===========================================================================
 
@@ -238,23 +238,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    autonomousCommand.start();
 
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-     * switch(autoSelected) { case "My Auto": autonomousCommand = new
-     * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-     * ExampleCommand(); break; }
-     */
+    autonomousCommand = chooser.getSelected();
 
-    // autonomousCommand = ;
-
-    // System.out.println(SmartDashboard.getString("Autonomous Mode Chooser", "none"));
-
-    // schedule the autonomous command (example)
     if (autonomousCommand != null) {
       autonomousCommand.start();
     }
+
   }
 
   /**
